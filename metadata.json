@@ -1,0 +1,8 @@
+{
+  "name": "freshvault true true final version",
+  "description": "A comprehensive, full-stack, role-based web and mobile-optimized application connecting Indian farmers, retailers, and service teams to reduce post-harvest loss.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
