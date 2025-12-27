@@ -10,13 +10,13 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart,
 const RetailerNotificationDropdown = () => {
     const { retailerNotifications, markNotificationRead, clearNotifications } = useStore();
     const [isOpen, setIsOpen] = useState(false);
-    
+
     const unreadCount = retailerNotifications.filter(n => !n.read).length;
 
     return (
         <div className="relative">
             <button onClick={() => setIsOpen(!isOpen)} className="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
-                <Bell size={20} className="text-gray-700"/>
+                <Bell size={20} className="text-gray-700" />
                 {unreadCount > 0 && (
                     <span className="absolute top-1 right-1 h-4 w-4 bg-red-500 rounded-full text-[10px] font-bold text-white flex items-center justify-center border-2 border-white">
                         {unreadCount}
@@ -27,7 +27,7 @@ const RetailerNotificationDropdown = () => {
                 {isOpen && (
                     <>
                         <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)}></div>
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
@@ -44,8 +44,8 @@ const RetailerNotificationDropdown = () => {
                                     <div className="p-8 text-center text-gray-500 text-sm">No new notifications</div>
                                 ) : (
                                     retailerNotifications.map(n => (
-                                        <div 
-                                            key={n.id} 
+                                        <div
+                                            key={n.id}
                                             className={`p-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer ${!n.read ? 'bg-blue-50/50' : ''}`}
                                             onClick={() => markNotificationRead(n.id)}
                                         >
@@ -72,15 +72,15 @@ const RetailerNotificationDropdown = () => {
 // --- Image Handling & Fallback Component ---
 const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=500&auto=format&fit=crop";
 const DEMO_IMAGES: Record<string, string> = {
-    'banana': 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=500&auto=format&fit=crop',
-    'pineapple': 'https://images.unsplash.com/photo-1589820296156-2454bb8a6d54?q=80&w=500&auto=format&fit=crop',
-    'cardamom': 'https://images.unsplash.com/photo-1550397623-287db30d0fb3?q=80&w=500&auto=format&fit=crop',
-    'pepper': 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=500&auto=format&fit=crop',
-    'ginger': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=500&auto=format&fit=crop',
-    'coconut': 'https://images.unsplash.com/photo-1598512752271-33f913a5af13?q=80&w=500&auto=format&fit=crop',
-    'nutmeg': 'https://images.unsplash.com/photo-1597528351508-4c94747c3208?q=80&w=500&auto=format&fit=crop',
-    'turmeric': 'https://images.unsplash.com/photo-1615485500704-8e99099928b3?q=80&w=500&auto=format&fit=crop',
-    'tapioca': 'https://images.unsplash.com/photo-1592186309879-fb54893cb9e4?q=80&w=500&auto=format&fit=crop'
+    'banana': '/images/nendran banana.jpg',
+    'pineapple': '/images/pineapple.jpg',
+    'cardamom': '/images/green cardamom1.jpg',
+    'pepper': '/images/black pepper3.jpg',
+    'ginger': '/images/ginger1.jpg',
+    'coconut': '/images/coconut3.jpg',
+    'nutmeg': '/images/nutmeg.jpg',
+    'turmeric': '/images/turmeric3.jpg',
+    'tapioca': '/images/tapioca3.jpg'
 };
 
 const RetailerCropImage: React.FC<{ src?: string; alt: string; className?: string; cropName?: string }> = ({ src, alt, className, cropName }) => {
@@ -125,9 +125,9 @@ const ChatModal: React.FC<{ isOpen: boolean; onClose: () => void; offer: Offer |
     const scrollRef = useRef<HTMLDivElement>(null);
 
     // Derived active offer to ensure reactive updates from store
-    const activeOffer = useMemo(() => 
+    const activeOffer = useMemo(() =>
         offers.find(o => o.id === offer?.id) || offer
-    , [offers, offer]);
+        , [offers, offer]);
 
     useEffect(() => {
         if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -143,10 +143,10 @@ const ChatModal: React.FC<{ isOpen: boolean; onClose: () => void; offer: Offer |
             timestamp: 'Just now'
         });
         setInput('');
-        
+
         // Mock reply
         setTimeout(() => {
-             addOfferMessage(offerId, {
+            addOfferMessage(offerId, {
                 id: Math.random().toString(),
                 sender: 'Farmer',
                 content: "I received your message. Let me check.",
@@ -178,14 +178,14 @@ const ChatModal: React.FC<{ isOpen: boolean; onClose: () => void; offer: Offer |
                     })}
                 </div>
                 <div className="pt-3 mt-2 border-t border-gray-100 flex gap-2">
-                    <Input 
-                        placeholder="Type message..." 
-                        value={input} 
-                        onChange={e => setInput(e.target.value)} 
+                    <Input
+                        placeholder="Type message..."
+                        value={input}
+                        onChange={e => setInput(e.target.value)}
                         onKeyDown={e => e.key === 'Enter' && handleSend()}
                         className="h-10 text-sm text-gray-900"
                     />
-                    <Button size="sm" onClick={handleSend} disabled={!input.trim()}><Send size={16}/></Button>
+                    <Button size="sm" onClick={handleSend} disabled={!input.trim()}><Send size={16} /></Button>
                 </div>
             </div>
         </Modal>
@@ -193,75 +193,75 @@ const ChatModal: React.FC<{ isOpen: boolean; onClose: () => void; offer: Offer |
 };
 
 export const RetailerDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'BROWSE' | 'MY_OFFERS' | 'DEALS' | 'TRENDS' | 'WATCHLIST'>('BROWSE');
-  const { isRetailerVerified, triggerPriceDropAlert } = useStore();
+    const [activeTab, setActiveTab] = useState<'BROWSE' | 'MY_OFFERS' | 'DEALS' | 'TRENDS' | 'WATCHLIST'>('BROWSE');
+    const { isRetailerVerified, triggerPriceDropAlert } = useStore();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-        triggerPriceDropAlert();
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            triggerPriceDropAlert();
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
-  return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8 pb-24 md:pb-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-            <h1 className="text-3xl font-bold font-heading text-gray-900 flex items-center gap-3">
-                Retailer Hub
-                {isRetailerVerified && (
-                    <span className="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 border border-blue-200">
-                        <BadgeCheck size={14} className="fill-blue-600 text-white"/> Verified
-                    </span>
-                )}
-            </h1>
-            <p className="text-gray-600 mt-1">Sourcing for <span className="font-bold text-gray-900">FreshMart Ltd.</span></p>
-        </div>
-        
-        <div className="flex items-center gap-4">
-             <RetailerNotificationDropdown />
-             <div className="flex gap-2 bg-white p-1 rounded-xl border border-gray-200 shadow-sm overflow-x-auto no-scrollbar max-w-[80vw]">
-                {[
-                    {id: 'BROWSE', label: 'Browse'},
-                    {id: 'MY_OFFERS', label: 'Offers'},
-                    {id: 'DEALS', label: 'Timeline'},
-                    {id: 'WATCHLIST', label: 'Watchlist'},
-                    {id: 'TRENDS', label: 'Trends'}
-                ].map(tab => (
-                    <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id as any)}
-                        className={`px-4 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === tab.id ? 'bg-primary text-white shadow-md' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
+    return (
+        <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8 pb-24 md:pb-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h1 className="text-3xl font-bold font-heading text-gray-900 flex items-center gap-3">
+                        Retailer Hub
+                        {isRetailerVerified && (
+                            <span className="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1.5 border border-blue-200">
+                                <BadgeCheck size={14} className="fill-blue-600 text-white" /> Verified
+                            </span>
+                        )}
+                    </h1>
+                    <p className="text-gray-600 mt-1">Sourcing for <span className="font-bold text-gray-900">FreshMart Ltd.</span></p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <RetailerNotificationDropdown />
+                    <div className="flex gap-2 bg-white p-1 rounded-xl border border-gray-200 shadow-sm overflow-x-auto no-scrollbar max-w-[80vw]">
+                        {[
+                            { id: 'BROWSE', label: 'Browse' },
+                            { id: 'MY_OFFERS', label: 'Offers' },
+                            { id: 'DEALS', label: 'Timeline' },
+                            { id: 'WATCHLIST', label: 'Watchlist' },
+                            { id: 'TRENDS', label: 'Trends' }
+                        ].map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id as any)}
+                                className={`px-4 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === tab.id ? 'bg-primary text-white shadow-md' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
-      </div>
 
-      <motion.div
-        key={activeTab}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        {activeTab === 'BROWSE' && <BrowseOffersView />}
-        {activeTab === 'MY_OFFERS' && <MyOffersView onTrack={(id) => setActiveTab('DEALS')} />}
-        {activeTab === 'DEALS' && <TimelineView onBrowse={() => setActiveTab('BROWSE')} />}
-        {activeTab === 'TRENDS' && <TrendsView />}
-        {activeTab === 'WATCHLIST' && <WatchlistView />}
-      </motion.div>
-    </div>
-  );
+            <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+            >
+                {activeTab === 'BROWSE' && <BrowseOffersView />}
+                {activeTab === 'MY_OFFERS' && <MyOffersView onTrack={(id) => setActiveTab('DEALS')} />}
+                {activeTab === 'DEALS' && <TimelineView onBrowse={() => setActiveTab('BROWSE')} />}
+                {activeTab === 'TRENDS' && <TrendsView />}
+                {activeTab === 'WATCHLIST' && <WatchlistView />}
+            </motion.div>
+        </div>
+    );
 };
 
 // --- Tab 1: Browse Offers ---
 const BrowseOffersView = () => {
     // ... [Code remains mostly unchanged, ensuring text colors]
     const { crops, addOffer, watchlist, toggleWatchlist, requestQACheck } = useStore();
-    const [selectedCrop, setSelectedCrop] = useState<Crop | null>(null); 
-    const [viewDetailCrop, setViewDetailCrop] = useState<Crop | null>(null); 
+    const [selectedCrop, setSelectedCrop] = useState<Crop | null>(null);
+    const [viewDetailCrop, setViewDetailCrop] = useState<Crop | null>(null);
     const [offerForm, setOfferForm] = useState({ price: '', quantity: '', notes: '' });
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [compareList, setCompareList] = useState<string[]>([]);
@@ -292,18 +292,18 @@ const BrowseOffersView = () => {
 
     const handleNumChange = (field: string, value: string) => {
         if (value && Number(value) < 0) {
-            setOfferForm(prev => ({...prev, [field]: ''}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setOfferForm(prev => ({ ...prev, [field]: '' }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setOfferForm(prev => ({...prev, [field]: value}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setOfferForm(prev => ({ ...prev, [field]: value }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
     const handleMakeOffer = () => {
         if (!selectedCrop) return;
         if (!offerForm.price || !offerForm.quantity || Number(offerForm.price) <= 0 || Number(offerForm.quantity) <= 0) return;
-        
+
         const newOffer: Offer = {
             id: Math.random().toString(36).substr(2, 9),
             cropId: selectedCrop.id,
@@ -340,7 +340,7 @@ const BrowseOffersView = () => {
     return (
         <div className="space-y-6">
             <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-4 lg:space-y-0 lg:flex lg:justify-between lg:items-center">
-                 <div className="flex flex-col sm:flex-row gap-4 flex-1">
+                <div className="flex flex-col sm:flex-row gap-4 flex-1">
                     <div className="relative max-w-xs w-full">
                         <Search className="absolute left-3 top-3 text-gray-500" size={18} />
                         <Input className="pl-10 h-10 text-gray-900 placeholder:text-gray-500 font-medium" placeholder="Search crops..." value={search} onChange={e => setSearch(e.target.value)} />
@@ -353,14 +353,14 @@ const BrowseOffersView = () => {
                         <option value="Palakkad">Palakkad</option>
                     </select>
                     <select className="h-10 px-3 rounded-lg border border-gray-200 text-sm bg-gray-50 text-gray-900 font-medium focus:ring-primary focus:border-primary" value={categoryFilter} onChange={e => setCategoryFilter(e.target.value)}>
-                         <option value="All">All Categories</option>
-                         <option value="Vegetables">Vegetables</option>
-                         <option value="Spices">Spices</option>
-                         <option value="Fruits">Fruits</option>
-                         <option value="Tubers">Tubers</option>
+                        <option value="All">All Categories</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Spices">Spices</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Tubers">Tubers</option>
                     </select>
                 </div>
-                
+
                 <div className="flex gap-2 items-center flex-wrap">
                     <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-1 border border-gray-200">
                         <button onClick={() => setSortOption('PRICE_ASC')} className={`p-1.5 rounded-md text-xs font-bold transition-colors ${sortOption === 'PRICE_ASC' ? 'bg-white text-primary shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>Price ↑</button>
@@ -369,7 +369,7 @@ const BrowseOffersView = () => {
                     </div>
                     <label className="flex items-center gap-2 text-sm text-gray-700 font-medium cursor-pointer select-none bg-yellow-50 px-3 py-2 rounded-lg border border-yellow-100 hover:bg-yellow-100 transition-colors">
                         <input type="checkbox" checked={promotedOnly} onChange={e => setPromotedOnly(e.target.checked)} className="rounded text-primary focus:ring-primary" />
-                        <Star size={14} className={promotedOnly ? "fill-yellow-500 text-yellow-500" : "text-yellow-600"}/> Promoted
+                        <Star size={14} className={promotedOnly ? "fill-yellow-500 text-yellow-500" : "text-yellow-600"} /> Promoted
                     </label>
                 </div>
             </div>
@@ -386,10 +386,10 @@ const BrowseOffersView = () => {
                 {filteredCrops.map(crop => (
                     <Card key={crop.id} className="group overflow-hidden hover:shadow-lg transition-all border border-gray-200 relative">
                         <div className="relative h-48">
-                            <RetailerCropImage 
-                                src={GLOBAL_BROWSE_IMAGE} 
-                                alt={crop.name} 
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                            <RetailerCropImage
+                                src={GLOBAL_BROWSE_IMAGE}
+                                alt={crop.name}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 cropName={crop.name}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -397,8 +397,8 @@ const BrowseOffersView = () => {
                                 <h3 className="font-bold font-heading text-xl">{crop.name}</h3>
                                 <p className="text-sm opacity-90 font-medium">{crop.variety}</p>
                             </div>
-                            
-                            <button 
+
+                            <button
                                 onClick={(e) => { e.stopPropagation(); toggleWatchlist(crop.id); }}
                                 className="absolute top-3 right-3 bg-black/20 hover:bg-white backdrop-blur-sm p-2 rounded-full transition-all text-white hover:text-red-500"
                             >
@@ -407,18 +407,18 @@ const BrowseOffersView = () => {
 
                             {crop.qaStatus === 'VERIFIED' && (
                                 <div className="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-md flex items-center gap-1">
-                                    <BadgeCheck size={12} fill="currentColor"/> QA Verified
+                                    <BadgeCheck size={12} fill="currentColor" /> QA Verified
                                 </div>
                             )}
                         </div>
                         <div className="p-5 space-y-4">
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <p className="text-sm text-gray-600 flex items-center gap-1 font-medium"><MapPin size={14}/> {crop.location}</p>
+                                    <p className="text-sm text-gray-600 flex items-center gap-1 font-medium"><MapPin size={14} /> {crop.location}</p>
                                     <div className="flex items-center gap-1 mt-1">
                                         <span className="font-semibold text-gray-900">{crop.farmerName}</span>
                                         <span className="flex items-center text-xs bg-green-100 text-green-800 font-bold px-1.5 rounded">
-                                            {crop.farmerRating} <Star size={10} className="ml-0.5 fill-current"/>
+                                            {crop.farmerRating} <Star size={10} className="ml-0.5 fill-current" />
                                         </span>
                                     </div>
                                 </div>
@@ -427,15 +427,15 @@ const BrowseOffersView = () => {
                                     <p className="text-xs text-gray-500 font-medium">per kg</p>
                                 </div>
                             </div>
-                            
+
                             <div className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 p-2.5 rounded-lg justify-between border border-gray-100">
-                                <div className="flex items-center gap-2 font-medium"><Package size={16} className="text-gray-500"/> <span>Available: <strong>{crop.quantity} kg</strong></span></div>
+                                <div className="flex items-center gap-2 font-medium"><Package size={16} className="text-gray-500" /> <span>Available: <strong>{crop.quantity} kg</strong></span></div>
                                 <Badge variant={crop.priority === 'URGENT' ? 'danger' : 'neutral'}>{crop.priority}</Badge>
                             </div>
 
                             <div className="flex items-center gap-2">
-                                <input 
-                                    type="checkbox" 
+                                <input
+                                    type="checkbox"
                                     id={`compare-${crop.id}`}
                                     checked={compareList.includes(crop.id)}
                                     onChange={() => toggleCompare(crop.id)}
@@ -454,19 +454,19 @@ const BrowseOffersView = () => {
                     </Card>
                 ))}
             </div>
-            
+
             {/* Offer Modal */}
             <Modal isOpen={!!selectedCrop} onClose={() => setSelectedCrop(null)} title={`Make Offer: ${selectedCrop?.name}`}>
                 <div className="space-y-4">
                     <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex justify-between items-center">
-                         <div>
-                             <p className="text-xs text-gray-500 uppercase font-bold">Asking Price</p>
-                             <p className="text-lg font-bold text-gray-900">₹{selectedCrop?.pricePerKg} / kg</p>
-                         </div>
-                         <div>
-                             <p className="text-xs text-gray-500 uppercase font-bold text-right">Available</p>
-                             <p className="text-lg font-bold text-right text-gray-900">{selectedCrop?.quantity} kg</p>
-                         </div>
+                        <div>
+                            <p className="text-xs text-gray-500 uppercase font-bold">Asking Price</p>
+                            <p className="text-lg font-bold text-gray-900">₹{selectedCrop?.pricePerKg} / kg</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-gray-500 uppercase font-bold text-right">Available</p>
+                            <p className="text-lg font-bold text-right text-gray-900">{selectedCrop?.quantity} kg</p>
+                        </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <Input label="Your Price (₹/kg)" type="number" min="0" value={offerForm.price} onChange={e => handleNumChange('price', e.target.value)} error={errors.price} />
@@ -474,7 +474,7 @@ const BrowseOffersView = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">Note to Farmer</label>
-                        <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={3} placeholder="Add specific requirements..." value={offerForm.notes} onChange={e => setOfferForm({...offerForm, notes: e.target.value})}></textarea>
+                        <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={3} placeholder="Add specific requirements..." value={offerForm.notes} onChange={e => setOfferForm({ ...offerForm, notes: e.target.value })}></textarea>
                     </div>
                     <div className="bg-blue-50 p-3 rounded-lg flex justify-between items-center">
                         <span className="text-sm font-medium text-blue-800">Total Offer Value</span>
@@ -488,9 +488,9 @@ const BrowseOffersView = () => {
             <Modal isOpen={!!viewDetailCrop} onClose={() => setViewDetailCrop(null)} title={viewDetailCrop?.name || 'Crop Details'}>
                 {viewDetailCrop && (
                     <div className="space-y-6">
-                        <RetailerCropImage 
-                            src={viewDetailCrop.imageUrl} 
-                            alt={viewDetailCrop.name} 
+                        <RetailerCropImage
+                            src={viewDetailCrop.imageUrl}
+                            alt={viewDetailCrop.name}
                             className="w-full h-48 object-cover rounded-xl"
                             cropName={viewDetailCrop.name}
                         />
@@ -504,9 +504,9 @@ const BrowseOffersView = () => {
                                 <p className="font-medium text-gray-900">{viewDetailCrop.harvestDate}</p>
                             </div>
                         </div>
-                        
+
                         <div className="p-4 border border-gray-200 rounded-xl">
-                            <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ShieldCheck size={18} className="text-green-600"/> Quality Assurance</h4>
+                            <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2"><ShieldCheck size={18} className="text-green-600" /> Quality Assurance</h4>
                             <div className="space-y-2 text-sm">
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">QA Status</span>
@@ -514,7 +514,7 @@ const BrowseOffersView = () => {
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-gray-600">Farmer Rating</span>
-                                    <span className="font-medium text-gray-900 flex items-center gap-1">{viewDetailCrop.farmerRating} <Star size={12} fill="currentColor" className="text-yellow-500"/></span>
+                                    <span className="font-medium text-gray-900 flex items-center gap-1">{viewDetailCrop.farmerRating} <Star size={12} fill="currentColor" className="text-yellow-500" /></span>
                                 </div>
                             </div>
                             {viewDetailCrop.qaStatus !== 'VERIFIED' && (
@@ -528,7 +528,7 @@ const BrowseOffersView = () => {
             </Modal>
 
             {/* Compare Modal */}
-             <Modal isOpen={isCompareModalOpen} onClose={() => setIsCompareModalOpen(false)} title="Compare Crops">
+            <Modal isOpen={isCompareModalOpen} onClose={() => setIsCompareModalOpen(false)} title="Compare Crops">
                 <div className="grid grid-cols-3 gap-4 min-w-[600px] overflow-x-auto">
                     {crops.filter(c => compareList.includes(c.id)).map(crop => (
                         <div key={crop.id} className="border border-gray-200 rounded-xl p-4 space-y-3">
@@ -562,11 +562,11 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
 
     const filteredOffers = useMemo(() => {
         return offers.filter(o => {
-            const matchesSearch = o.cropName.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                  o.farmerName.toLowerCase().includes(searchQuery.toLowerCase());
-            
+            const matchesSearch = o.cropName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                o.farmerName.toLowerCase().includes(searchQuery.toLowerCase());
+
             const matchesTab = viewMode === 'ACTIVE' ? isActiveStatus(o.status) : isHistoryStatus(o.status);
-            
+
             return matchesTab && matchesSearch;
         });
     }, [offers, viewMode, searchQuery]);
@@ -579,14 +579,14 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
             <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm space-y-4">
                 <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
                     <div className="flex bg-gray-100 p-1 rounded-lg w-full md:w-auto">
-                        <button 
-                            onClick={() => setViewMode('ACTIVE')} 
+                        <button
+                            onClick={() => setViewMode('ACTIVE')}
                             className={`flex-1 md:flex-none px-6 py-2 rounded-md text-sm font-bold transition-all ${viewMode === 'ACTIVE' ? 'bg-white text-primary shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
                         >
                             Active Offers ({activeCount})
                         </button>
-                        <button 
-                            onClick={() => setViewMode('HISTORY')} 
+                        <button
+                            onClick={() => setViewMode('HISTORY')}
                             className={`flex-1 md:flex-none px-6 py-2 rounded-md text-sm font-bold transition-all ${viewMode === 'HISTORY' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
                         >
                             History ({historyCount})
@@ -594,11 +594,11 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
                     </div>
                     <div className="relative w-full md:max-w-md">
                         <Search className="absolute left-3 top-3 text-gray-400" size={18} />
-                        <Input 
-                            className="pl-10 h-11 text-gray-900 placeholder:text-gray-500" 
-                            placeholder="Search offers by crop, farmer..." 
-                            value={searchQuery} 
-                            onChange={e => setSearchQuery(e.target.value)} 
+                        <Input
+                            className="pl-10 h-11 text-gray-900 placeholder:text-gray-500"
+                            placeholder="Search offers by crop, farmer..."
+                            value={searchQuery}
+                            onChange={e => setSearchQuery(e.target.value)}
                         />
                     </div>
                 </div>
@@ -607,22 +607,22 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredOffers.map(offer => {
                     const isNegotiating = offer.status === 'NEGOTIATION';
-                    
+
                     return (
                         <Card key={offer.id} className="p-5 hover:shadow-md transition-shadow flex flex-col h-full border border-gray-200 bg-white group">
                             <div className="flex justify-between items-start mb-3">
                                 <div className="flex items-center gap-3">
-                                     <RetailerCropImage alt={offer.cropName} cropName={offer.cropName} className="w-12 h-12 rounded-lg object-cover" />
-                                     <div>
+                                    <RetailerCropImage alt={offer.cropName} cropName={offer.cropName} className="w-12 h-12 rounded-lg object-cover" />
+                                    <div>
                                         <h3 className="font-bold text-gray-900 text-lg">{offer.cropName}</h3>
-                                        <p className="text-sm text-gray-500 flex items-center gap-1 mt-0.5"><User size={12}/> {offer.farmerName}</p>
+                                        <p className="text-sm text-gray-500 flex items-center gap-1 mt-0.5"><User size={12} /> {offer.farmerName}</p>
                                     </div>
                                 </div>
                                 <Badge variant={offer.status === 'COMPLETED' ? 'success' : offer.status === 'REJECTED' ? 'danger' : 'warning'}>
                                     {offer.status.replace('_', ' ')}
                                 </Badge>
                             </div>
-                            
+
                             <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-2 mb-4 flex-1">
                                 <div className="flex justify-between text-sm">
                                     <span className="text-gray-500">Offer Price</span>
@@ -637,23 +637,23 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
                                     <span className="font-bold text-primary text-lg">₹{offer.amount.toLocaleString()}</span>
                                 </div>
                             </div>
-                            
+
                             <div className="mt-auto space-y-2">
                                 {viewMode === 'ACTIVE' ? (
                                     <>
                                         <div className="flex gap-2">
-                                            <Button 
-                                                variant="secondary" 
-                                                size="sm" 
-                                                className="flex-1 bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100" 
+                                            <Button
+                                                variant="secondary"
+                                                size="sm"
+                                                className="flex-1 bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-100"
                                                 onClick={() => setChatOffer(offer)}
                                             >
-                                                <MessageCircle size={16} className="mr-1"/> Chat
+                                                <MessageCircle size={16} className="mr-1" /> Chat
                                             </Button>
-                                            <Button 
-                                                size="sm" 
+                                            <Button
+                                                size="sm"
                                                 variant="outline"
-                                                className="flex-1 border-gray-200 text-gray-700" 
+                                                className="flex-1 border-gray-200 text-gray-700"
                                                 onClick={() => {
                                                     // Simple toggle for demo negotiation
                                                     const newStatus = isNegotiating ? 'OFFER_SENT' : 'NEGOTIATION';
@@ -670,7 +670,7 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
                                             </Button>
                                             {offer.status === 'AGREEMENT' ? (
                                                 <Button size="sm" className="flex-[2] bg-green-600 hover:bg-green-700 text-white" onClick={() => onTrack(offer.id)}>
-                                                    Track Deal <ArrowRight size={16} className="ml-1"/>
+                                                    Track Deal <ArrowRight size={16} className="ml-1" />
                                                 </Button>
                                             ) : (
                                                 <Button size="sm" className="flex-[2] bg-gray-900 text-white hover:bg-black" onClick={() => { updateOfferStatus(offer.id, 'AGREEMENT'); alert("Offer Accepted! Moving to Timeline."); onTrack(offer.id); }}>
@@ -681,10 +681,10 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
                                     </>
                                 ) : (
                                     <div className="flex gap-2">
-                                         <Button variant="outline" size="sm" className="flex-1" onClick={() => setChatOffer(offer)}>
+                                        <Button variant="outline" size="sm" className="flex-1" onClick={() => setChatOffer(offer)}>
                                             View History
                                         </Button>
-                                         <Button variant="ghost" size="sm" className="text-gray-500 cursor-default flex-1 justify-end">
+                                        <Button variant="ghost" size="sm" className="text-gray-500 cursor-default flex-1 justify-end">
                                             {new Date(offer.date).toLocaleDateString()}
                                         </Button>
                                     </div>
@@ -697,16 +697,16 @@ const MyOffersView = ({ onTrack }: { onTrack: (id: string) => void }) => {
                     <div className="col-span-full py-16 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
                         <FileText size={48} className="mx-auto text-gray-300 mb-4" />
                         <p className="text-gray-500 font-medium">No offers found in {viewMode.toLowerCase()} view.</p>
-                        <Button variant="outline" className="mt-4" onClick={() => {setSearchQuery('');}}>Clear Search</Button>
+                        <Button variant="outline" className="mt-4" onClick={() => { setSearchQuery(''); }}>Clear Search</Button>
                     </div>
                 )}
             </div>
 
             {/* Chat Modal */}
-            <ChatModal 
-                isOpen={!!chatOffer} 
-                onClose={() => setChatOffer(null)} 
-                offer={chatOffer} 
+            <ChatModal
+                isOpen={!!chatOffer}
+                onClose={() => setChatOffer(null)}
+                offer={chatOffer}
             />
         </div>
     );
@@ -717,7 +717,7 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
     const { offers } = useStore();
     // Active deals logic
     const activeDeals = offers.filter(o => ['AGREEMENT', 'DISPATCH', 'DELIVERY', 'PAYMENT', 'COMPLETED'].includes(o.status));
-    
+
     // Timeline steps definition
     const STEPS = [
         { id: 'AGREEMENT', label: 'Agreement' },
@@ -731,7 +731,7 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
         const statusOrder = ['AGREEMENT', 'DISPATCH', 'DELIVERY', 'PAYMENT', 'COMPLETED'];
         const currentIndex = statusOrder.indexOf(currentStatus);
         const stepIndex = statusOrder.indexOf(stepId);
-        
+
         if (currentIndex > stepIndex) return 'completed';
         if (currentIndex === stepIndex) return 'current';
         return 'pending';
@@ -748,20 +748,19 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
                         {STEPS.map((step, i) => {
                             const status = getStepStatus(deal.status, step.id);
                             const isLast = i === STEPS.length - 1;
-                            
+
                             return (
                                 <React.Fragment key={step.id}>
                                     {/* Step Circle */}
-                                    <div 
+                                    <div
                                         className="relative flex flex-col items-center cursor-pointer group"
                                         onClick={() => setExpandedStep(expandedStep === step.id ? null : step.id)}
                                     >
-                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 z-10 transition-all ${
-                                            status === 'completed' ? 'bg-green-500 border-green-500 text-white' : 
-                                            status === 'current' ? 'bg-white border-green-500 text-green-500 shadow-md ring-4 ring-green-100' : 
-                                            'bg-white border-gray-300 text-gray-300'
-                                        }`}>
-                                            {status === 'completed' ? <CheckCircle size={14}/> : <div className={`w-2 h-2 rounded-full ${status === 'current' ? 'bg-green-500' : 'bg-gray-300'}`}></div>}
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 z-10 transition-all ${status === 'completed' ? 'bg-green-500 border-green-500 text-white' :
+                                            status === 'current' ? 'bg-white border-green-500 text-green-500 shadow-md ring-4 ring-green-100' :
+                                                'bg-white border-gray-300 text-gray-300'
+                                            }`}>
+                                            {status === 'completed' ? <CheckCircle size={14} /> : <div className={`w-2 h-2 rounded-full ${status === 'current' ? 'bg-green-500' : 'bg-gray-300'}`}></div>}
                                         </div>
                                         <span className={`text-xs font-bold mt-2 whitespace-nowrap ${status === 'pending' ? 'text-gray-400' : 'text-gray-800'}`}>
                                             {step.label}
@@ -771,8 +770,8 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
                                     {/* Connector Line */}
                                     {!isLast && (
                                         <div className="flex-1 h-0.5 bg-gray-200 mx-2 relative min-w-[60px]">
-                                            <div 
-                                                className={`absolute left-0 top-0 h-full bg-green-500 transition-all duration-500`} 
+                                            <div
+                                                className={`absolute left-0 top-0 h-full bg-green-500 transition-all duration-500`}
                                                 style={{ width: status === 'completed' ? '100%' : '0%' }}
                                             ></div>
                                         </div>
@@ -786,15 +785,15 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
                 {/* Expanded Details Panel */}
                 <AnimatePresence>
                     {expandedStep && (
-                        <motion.div 
-                            initial={{ height: 0, opacity: 0 }} 
-                            animate={{ height: 'auto', opacity: 1 }} 
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             className="bg-gray-50 border-t border-gray-100 p-4"
                         >
                             <div className="flex items-start gap-3">
                                 <div className="p-2 bg-white rounded-lg border border-gray-200 shadow-sm text-primary">
-                                    <Clock size={18}/>
+                                    <Clock size={18} />
                                 </div>
                                 <div>
                                     <h5 className="font-bold text-gray-900 text-sm">{STEPS.find(s => s.id === expandedStep)?.label} Details</h5>
@@ -818,16 +817,16 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
     return (
         <div className="space-y-6">
             <h3 className="font-bold text-xl text-gray-900 flex items-center gap-2">
-                <Truck className="text-primary"/> Active Shipments & Deals
+                <Truck className="text-primary" /> Active Shipments & Deals
             </h3>
-            
+
             <div className="grid grid-cols-1 gap-6">
                 {activeDeals.map(deal => (
                     <Card key={deal.id} className="p-0 overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow bg-white">
                         {/* Card Header */}
                         <div className="bg-white p-5 border-b border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-4">
                             <div className="flex items-center gap-4">
-                                <RetailerCropImage cropName={deal.cropName} alt={deal.cropName} className="h-12 w-12 rounded-xl object-cover shadow-sm"/>
+                                <RetailerCropImage cropName={deal.cropName} alt={deal.cropName} className="h-12 w-12 rounded-xl object-cover shadow-sm" />
                                 <div>
                                     <h4 className="font-bold text-gray-900 text-lg">{deal.cropName}</h4>
                                     <p className="text-sm text-gray-500 font-medium">ID: #{deal.id} • {deal.quantity}kg</p>
@@ -846,14 +845,14 @@ const TimelineView = ({ onBrowse }: { onBrowse: () => void }) => {
                         <div className="bg-white">
                             <HorizontalStepper deal={deal} />
                         </div>
-                        
+
                         <div className="bg-gray-50 p-3 border-t border-gray-200 flex justify-between items-center">
                             <span className="text-xs text-gray-500 font-medium ml-2">Updated: {new Date().toLocaleDateString()}</span>
-                            <Button size="sm" variant="ghost" className="text-gray-600 hover:text-gray-900">View Invoice <ChevronRight size={16}/></Button>
+                            <Button size="sm" variant="ghost" className="text-gray-600 hover:text-gray-900">View Invoice <ChevronRight size={16} /></Button>
                         </div>
                     </Card>
                 ))}
-                
+
                 {activeDeals.length === 0 && (
                     <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-gray-300">
                         <Truck size={48} className="mx-auto text-gray-300 mb-4" />
@@ -886,14 +885,14 @@ const TrendsView = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card className="p-6">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><TrendingUp size={20} className="text-primary"/> Nendran Banana Price Trend</h3>
+                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><TrendingUp size={20} className="text-primary" /> Nendran Banana Price Trend</h3>
                 <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={priceData}>
-                             <defs>
+                            <defs>
                                 <linearGradient id="colorPrice" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#2F9D3C" stopOpacity={0.2}/>
-                                    <stop offset="95%" stopColor="#2F9D3C" stopOpacity={0}/>
+                                    <stop offset="5%" stopColor="#2F9D3C" stopOpacity={0.2} />
+                                    <stop offset="95%" stopColor="#2F9D3C" stopOpacity={0} />
                                 </linearGradient>
                             </defs>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -906,16 +905,16 @@ const TrendsView = () => {
                 </div>
             </Card>
 
-             <Card className="p-6">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><PieChart size={20} className="text-blue-500"/> Category Distribution</h3>
+            <Card className="p-6">
+                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><PieChart size={20} className="text-blue-500" /> Category Distribution</h3>
                 <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={distributionData} layout="vertical">
-                             <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                             <XAxis type="number" hide />
-                             <YAxis dataKey="name" type="category" width={80} fontSize={12} tickLine={false} axisLine={false}/>
-                             <Tooltip cursor={{fill: 'transparent'}}/>
-                             <Bar dataKey="value" fill="#3B82F6" radius={[0, 4, 4, 0]} barSize={24}/>
+                            <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                            <XAxis type="number" hide />
+                            <YAxis dataKey="name" type="category" width={80} fontSize={12} tickLine={false} axisLine={false} />
+                            <Tooltip cursor={{ fill: 'transparent' }} />
+                            <Bar dataKey="value" fill="#3B82F6" radius={[0, 4, 4, 0]} barSize={24} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
@@ -925,7 +924,7 @@ const TrendsView = () => {
                 <Card className="p-6 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
                     <div className="flex items-center gap-4 mb-4">
                         <div className="p-3 bg-white/10 rounded-xl">
-                            <Activity size={24} className="text-yellow-400"/>
+                            <Activity size={24} className="text-yellow-400" />
                         </div>
                         <div>
                             <h3 className="font-bold text-lg">Market Intelligence</h3>
@@ -933,18 +932,18 @@ const TrendsView = () => {
                         </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                         <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                             <p className="text-xs text-gray-400 uppercase font-bold mb-1">Price Alert</p>
-                             <p className="text-sm font-medium">Cardamom prices expected to drop by 5% next week due to high yield forecast.</p>
-                         </div>
-                         <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                             <p className="text-xs text-gray-400 uppercase font-bold mb-1">High Demand</p>
-                             <p className="text-sm font-medium">Organic Ginger demand surging in Kochi markets (+15% DoD).</p>
-                         </div>
-                         <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                             <p className="text-xs text-gray-400 uppercase font-bold mb-1">Weather Impact</p>
-                             <p className="text-sm font-medium">Heavy rains in Wayanad may delay Banana harvest logistics by 2 days.</p>
-                         </div>
+                        <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <p className="text-xs text-gray-400 uppercase font-bold mb-1">Price Alert</p>
+                            <p className="text-sm font-medium">Cardamom prices expected to drop by 5% next week due to high yield forecast.</p>
+                        </div>
+                        <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <p className="text-xs text-gray-400 uppercase font-bold mb-1">High Demand</p>
+                            <p className="text-sm font-medium">Organic Ginger demand surging in Kochi markets (+15% DoD).</p>
+                        </div>
+                        <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                            <p className="text-xs text-gray-400 uppercase font-bold mb-1">Weather Impact</p>
+                            <p className="text-sm font-medium">Heavy rains in Wayanad may delay Banana harvest logistics by 2 days.</p>
+                        </div>
                     </div>
                 </Card>
             </div>
@@ -955,7 +954,7 @@ const TrendsView = () => {
 const WatchlistView = () => {
     const { crops, watchlist, toggleWatchlist, addOffer } = useStore();
     const watchedCrops = crops.filter(c => watchlist.includes(c.id));
-    
+
     // New State for Make Offer Modal
     const [selectedCrop, setSelectedCrop] = useState<Crop | null>(null);
     const [offerForm, setOfferForm] = useState({ price: '', quantity: '', notes: '' });
@@ -963,18 +962,18 @@ const WatchlistView = () => {
 
     const handleNumChange = (field: string, value: string) => {
         if (value && Number(value) < 0) {
-            setOfferForm(prev => ({...prev, [field]: ''}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setOfferForm(prev => ({ ...prev, [field]: '' }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setOfferForm(prev => ({...prev, [field]: value}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setOfferForm(prev => ({ ...prev, [field]: value }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
     const handleMakeOffer = () => {
         if (!selectedCrop) return;
         if (!offerForm.price || !offerForm.quantity || Number(offerForm.price) <= 0 || Number(offerForm.quantity) <= 0) return;
-        
+
         const newOffer: Offer = {
             id: Math.random().toString(36).substr(2, 9),
             cropId: selectedCrop.id,
@@ -1002,24 +1001,24 @@ const WatchlistView = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {watchedCrops.map(crop => (
                     <Card key={crop.id} className="relative group">
-                         <div className="h-40 relative">
-                             <img src={crop.imageUrl} className="w-full h-full object-cover rounded-t-xl" alt={crop.name} />
-                             <button onClick={() => toggleWatchlist(crop.id)} className="absolute top-2 right-2 bg-white p-2 rounded-full text-red-500 shadow-md hover:bg-red-50">
-                                 <Heart size={18} fill="currentColor"/>
-                             </button>
-                         </div>
-                         <div className="p-4">
-                             <h3 className="font-bold text-gray-900">{crop.name}</h3>
-                             <p className="text-sm text-gray-500 mb-2">{crop.farmerName} • {crop.location}</p>
-                             <div className="flex justify-between items-center">
-                                 <p className="text-xl font-bold text-primary">₹{crop.pricePerKg}<span className="text-xs text-gray-400 font-normal">/kg</span></p>
-                                 <Button size="sm" onClick={() => {
-                                     setSelectedCrop(crop);
-                                     setOfferForm({ price: crop.pricePerKg.toString(), quantity: '', notes: '' });
-                                     setErrors({});
-                                 }}>Make Offer</Button>
-                             </div>
-                         </div>
+                        <div className="h-40 relative">
+                            <img src={crop.imageUrl} className="w-full h-full object-cover rounded-t-xl" alt={crop.name} />
+                            <button onClick={() => toggleWatchlist(crop.id)} className="absolute top-2 right-2 bg-white p-2 rounded-full text-red-500 shadow-md hover:bg-red-50">
+                                <Heart size={18} fill="currentColor" />
+                            </button>
+                        </div>
+                        <div className="p-4">
+                            <h3 className="font-bold text-gray-900">{crop.name}</h3>
+                            <p className="text-sm text-gray-500 mb-2">{crop.farmerName} • {crop.location}</p>
+                            <div className="flex justify-between items-center">
+                                <p className="text-xl font-bold text-primary">₹{crop.pricePerKg}<span className="text-xs text-gray-400 font-normal">/kg</span></p>
+                                <Button size="sm" onClick={() => {
+                                    setSelectedCrop(crop);
+                                    setOfferForm({ price: crop.pricePerKg.toString(), quantity: '', notes: '' });
+                                    setErrors({});
+                                }}>Make Offer</Button>
+                            </div>
+                        </div>
                     </Card>
                 ))}
                 {watchedCrops.length === 0 && <p className="text-gray-500 col-span-full py-10 text-center">Your watchlist is empty.</p>}
@@ -1029,14 +1028,14 @@ const WatchlistView = () => {
             <Modal isOpen={!!selectedCrop} onClose={() => setSelectedCrop(null)} title={`Make Offer: ${selectedCrop?.name}`}>
                 <div className="space-y-4">
                     <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 flex justify-between items-center">
-                         <div>
-                             <p className="text-xs text-gray-500 uppercase font-bold">Asking Price</p>
-                             <p className="text-lg font-bold text-gray-900">₹{selectedCrop?.pricePerKg} / kg</p>
-                         </div>
-                         <div>
-                             <p className="text-xs text-gray-500 uppercase font-bold text-right">Available</p>
-                             <p className="text-lg font-bold text-right text-gray-900">{selectedCrop?.quantity} kg</p>
-                         </div>
+                        <div>
+                            <p className="text-xs text-gray-500 uppercase font-bold">Asking Price</p>
+                            <p className="text-lg font-bold text-gray-900">₹{selectedCrop?.pricePerKg} / kg</p>
+                        </div>
+                        <div>
+                            <p className="text-xs text-gray-500 uppercase font-bold text-right">Available</p>
+                            <p className="text-lg font-bold text-right text-gray-900">{selectedCrop?.quantity} kg</p>
+                        </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <Input label="Your Price (₹/kg)" type="number" min="0" value={offerForm.price} onChange={e => handleNumChange('price', e.target.value)} error={errors.price} />
@@ -1044,7 +1043,7 @@ const WatchlistView = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">Note to Farmer</label>
-                        <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={3} placeholder="Add specific requirements..." value={offerForm.notes} onChange={e => setOfferForm({...offerForm, notes: e.target.value})}></textarea>
+                        <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={3} placeholder="Add specific requirements..." value={offerForm.notes} onChange={e => setOfferForm({ ...offerForm, notes: e.target.value })}></textarea>
                     </div>
                     <div className="bg-blue-50 p-3 rounded-lg flex justify-between items-center">
                         <span className="text-sm font-medium text-blue-800">Total Offer Value</span>

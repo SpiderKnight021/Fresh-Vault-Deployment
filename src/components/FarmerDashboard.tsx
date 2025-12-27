@@ -15,10 +15,10 @@ const KERALA_DISTRICTS = [
 ];
 
 const UNIT_DATA = [
-    { name: 'Portable Fresh Storage', type: 'Portable Fresh Storage', capacity: '200-500 kg', price: 750, icon: <Box size={24} className="text-blue-500"/>, features: ['Standard Temp', 'Battery Backup', 'GPS'] },
-    { name: 'Multi-Crop Storage', type: 'Multi-Crop Storage', capacity: '500-1000 kg', price: 1200, icon: <Package size={24} className="text-green-500"/>, features: ['Compartments', 'Humidity Control', 'Solar Ready'] },
-    { name: 'Controlled Atmosphere (CA)', type: 'Controlled Atmosphere (CA)', capacity: '1000+ kg', price: 2500, icon: <Wind size={24} className="text-purple-500"/>, features: ['O2/CO2 Control', 'Precision Cooling', 'Long Term'] },
-    { name: 'Ethylene Ripening Chamber', type: 'Ethylene Ripening Chamber', capacity: '500 kg', price: 1500, icon: <Zap size={24} className="text-yellow-500"/>, features: ['Ethylene Dosing', 'Gas Monitoring', 'Auto-Vent'] }
+    { name: 'Portable Fresh Storage', type: 'Portable Fresh Storage', capacity: '200-500 kg', price: 750, icon: <Box size={24} className="text-blue-500" />, features: ['Standard Temp', 'Battery Backup', 'GPS'] },
+    { name: 'Multi-Crop Storage', type: 'Multi-Crop Storage', capacity: '500-1000 kg', price: 1200, icon: <Package size={24} className="text-green-500" />, features: ['Compartments', 'Humidity Control', 'Solar Ready'] },
+    { name: 'Controlled Atmosphere (CA)', type: 'Controlled Atmosphere (CA)', capacity: '1000+ kg', price: 2500, icon: <Wind size={24} className="text-purple-500" />, features: ['O2/CO2 Control', 'Precision Cooling', 'Long Term'] },
+    { name: 'Ethylene Ripening Chamber', type: 'Ethylene Ripening Chamber', capacity: '500 kg', price: 1500, icon: <Zap size={24} className="text-yellow-500" />, features: ['Ethylene Dosing', 'Gas Monitoring', 'Auto-Vent'] }
 ];
 
 // Notification Component
@@ -30,7 +30,7 @@ const NotificationDropdown = () => {
     return (
         <div className="relative">
             <button onClick={() => setIsOpen(!isOpen)} className="relative p-2 rounded-full hover:bg-gray-100 transition-colors">
-                <Bell size={20} className="text-gray-600"/>
+                <Bell size={20} className="text-gray-600" />
                 {unreadCount > 0 && (
                     <span className="absolute top-1 right-1 h-4 w-4 bg-red-500 rounded-full text-[10px] font-bold text-white flex items-center justify-center border-2 border-white">
                         {unreadCount}
@@ -41,7 +41,7 @@ const NotificationDropdown = () => {
                 {isOpen && (
                     <>
                         <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)}></div>
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
@@ -58,8 +58,8 @@ const NotificationDropdown = () => {
                                     <div className="p-8 text-center text-gray-400 text-sm">No new notifications</div>
                                 ) : (
                                     farmerNotifications.map(n => (
-                                        <div 
-                                            key={n.id} 
+                                        <div
+                                            key={n.id}
                                             className={`p-3 border-b border-gray-50 hover:bg-gray-50 cursor-pointer ${!n.read ? 'bg-blue-50/50' : ''}`}
                                             onClick={() => markNotificationRead(n.id)}
                                         >
@@ -84,52 +84,52 @@ const NotificationDropdown = () => {
 };
 
 export const FarmerDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'MONITORING' | 'MOBILE_STORAGE' | 'MARKETPLACE' | 'COMMUNITY'>('MONITORING');
+    const [activeTab, setActiveTab] = useState<'MONITORING' | 'MOBILE_STORAGE' | 'MARKETPLACE' | 'COMMUNITY'>('MONITORING');
 
-  return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8 pb-24 md:pb-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 font-heading">Farmer Dashboard</h1>
-            <p className="text-gray-500">Kerala Region • <span className="text-primary font-semibold">Online</span></p>
-        </div>
-        
-        <div className="flex items-center gap-4">
-            <NotificationDropdown />
-            <div className="flex gap-2 bg-white p-1.5 rounded-xl shadow-sm border border-gray-200 overflow-x-auto no-scrollbar max-w-[80vw]">
-                {[
-                    { id: 'MONITORING', label: 'Monitoring' },
-                    { id: 'MOBILE_STORAGE', label: 'Mobile Storage' },
-                    { id: 'MARKETPLACE', label: 'Market Connector' },
-                    { id: 'COMMUNITY', label: 'Community' }
-                ].map((tab) => (
-                    <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id as any)}
-                        className={`px-5 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === tab.id ? 'bg-primary text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'}`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
+    return (
+        <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8 pb-24 md:pb-8">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 font-heading">Farmer Dashboard</h1>
+                    <p className="text-gray-500">Kerala Region • <span className="text-primary font-semibold">Online</span></p>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <NotificationDropdown />
+                    <div className="flex gap-2 bg-white p-1.5 rounded-xl shadow-sm border border-gray-200 overflow-x-auto no-scrollbar max-w-[80vw]">
+                        {[
+                            { id: 'MONITORING', label: 'Monitoring' },
+                            { id: 'MOBILE_STORAGE', label: 'Mobile Storage' },
+                            { id: 'MARKETPLACE', label: 'Market Connector' },
+                            { id: 'COMMUNITY', label: 'Community' }
+                        ].map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id as any)}
+                                className={`px-5 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === tab.id ? 'bg-primary text-white shadow-md' : 'text-gray-600 hover:bg-gray-50'}`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
-      </div>
 
-      {/* Content Area */}
-      <motion.div
-        key={activeTab}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        {activeTab === 'MONITORING' && <MonitoringView />}
-        {activeTab === 'MOBILE_STORAGE' && <MobileStorageView />}
-        {activeTab === 'MARKETPLACE' && <MarketplaceView />}
-        {activeTab === 'COMMUNITY' && <CommunityView />}
-      </motion.div>
-    </div>
-  );
+            {/* Content Area */}
+            <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+            >
+                {activeTab === 'MONITORING' && <MonitoringView />}
+                {activeTab === 'MOBILE_STORAGE' && <MobileStorageView />}
+                {activeTab === 'MARKETPLACE' && <MarketplaceView />}
+                {activeTab === 'COMMUNITY' && <CommunityView />}
+            </motion.div>
+        </div>
+    );
 };
 
 interface FilterPillProps {
@@ -147,7 +147,7 @@ const FilterPill: React.FC<FilterPillProps> = ({ label, count, active, onClick, 
         yellow: 'bg-yellow-500 text-white shadow-lg shadow-yellow-500/20 border-yellow-500',
         green: 'bg-green-500 text-white shadow-lg shadow-green-500/20 border-green-500',
     };
-    
+
     const inactiveClasses: Record<string, string> = {
         gray: 'bg-white text-gray-600 hover:bg-gray-50 border-gray-200',
         red: 'bg-white text-red-600 hover:bg-red-50 border-gray-200',
@@ -156,7 +156,7 @@ const FilterPill: React.FC<FilterPillProps> = ({ label, count, active, onClick, 
     };
 
     return (
-        <button 
+        <button
             onClick={onClick}
             className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 flex items-center gap-2 whitespace-nowrap ${active ? activeClasses[color] || activeClasses.gray : inactiveClasses[color] || inactiveClasses.gray}`}
         >
@@ -183,37 +183,37 @@ const AskExpertModal: React.FC<{ isOpen: boolean; onClose: () => void; onSubmit:
     }, [isOpen, initialContext]);
 
     const handleSubmit = () => {
-        if(!form.title) return;
+        if (!form.title) return;
         onSubmit(form);
     };
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Ask an Expert">
             <div className="space-y-4">
-                <Input label="Question Title" placeholder="e.g. Yellow spots on leaves" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
-                <Input label="Crop Related" placeholder="e.g. Tomato" value={form.crop} onChange={e => setForm({...form, crop: e.target.value})} />
+                <Input label="Question Title" placeholder="e.g. Yellow spots on leaves" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} />
+                <Input label="Crop Related" placeholder="e.g. Tomato" value={form.crop} onChange={e => setForm({ ...form, crop: e.target.value })} />
                 <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1.5">Details</label>
-                    <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={4} placeholder="Describe symptoms, duration, and environment..." value={form.desc} onChange={e => setForm({...form, desc: e.target.value})}></textarea>
+                    <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={4} placeholder="Describe symptoms, duration, and environment..." value={form.desc} onChange={e => setForm({ ...form, desc: e.target.value })}></textarea>
                 </div>
-                
+
                 {/* Mock Image Upload */}
-                <div 
-                    onClick={() => setForm({...form, image: "https://images.unsplash.com/photo-1591857177580-dc82b9e4e11c?q=80&w=500&auto=format&fit=crop"})}
+                <div
+                    onClick={() => setForm({ ...form, image: "https://images.unsplash.com/photo-1591857177580-dc82b9e4e11c?q=80&w=500&auto=format&fit=crop" })}
                     className={`border-2 border-dashed rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition-colors ${form.image ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:bg-gray-50'}`}
                 >
                     {form.image ? (
-                        <div className="flex items-center gap-2 text-green-700 font-bold text-xs"><Check size={16}/> Image Attached</div>
+                        <div className="flex items-center gap-2 text-green-700 font-bold text-xs"><Check size={16} /> Image Attached</div>
                     ) : (
                         <>
-                            <ImageIcon size={24} className="text-gray-400 mb-1"/>
+                            <ImageIcon size={24} className="text-gray-400 mb-1" />
                             <span className="text-xs text-gray-500">Attach Photo (Optional)</span>
                         </>
                     )}
                 </div>
 
                 <div className="flex items-center gap-2 p-3 bg-yellow-50 text-yellow-800 text-xs rounded-lg">
-                    <AlertCircle size={16}/> Expert responses usually take 1-2 hours.
+                    <AlertCircle size={16} /> Expert responses usually take 1-2 hours.
                 </div>
                 <Button className="w-full" onClick={handleSubmit}>Start Consultation</Button>
             </div>
@@ -222,96 +222,96 @@ const AskExpertModal: React.FC<{ isOpen: boolean; onClose: () => void; onSubmit:
 };
 
 const MonitoringView = () => {
-  const { crops } = useStore();
-  const [filter, setFilter] = useState<RiskLevel | 'ALL'>('ALL');
-  
-  // State for Action Modals
-  const [serviceCrop, setServiceCrop] = useState<Crop | null>(null);
-  const [shiftCrop, setShiftCrop] = useState<Crop | null>(null);
-  const [expertCrop, setExpertCrop] = useState<Crop | null>(null);
+    const { crops } = useStore();
+    const [filter, setFilter] = useState<RiskLevel | 'ALL'>('ALL');
 
-  // New Question Handler for Monitoring
-  const handleExpertFromMonitoring = (data: any) => {
-      const { askExpertQuestion } = useStore.getState(); // Direct access for inline handler
-      askExpertQuestion({
-          id: Math.random().toString(),
-          farmerName: 'John Doe',
-          crop: data.crop,
-          title: data.title,
-          description: data.desc,
-          status: 'OPEN',
-          date: 'Just now',
-          history: [{
-              id: Math.random().toString(),
-              sender: 'Farmer',
-              content: data.desc,
-              timestamp: 'Just now',
-              type: 'text',
-              isRead: true
-          }]
-      });
-      setExpertCrop(null);
-      alert("Question sent to expert!");
-  };
+    // State for Action Modals
+    const [serviceCrop, setServiceCrop] = useState<Crop | null>(null);
+    const [shiftCrop, setShiftCrop] = useState<Crop | null>(null);
+    const [expertCrop, setExpertCrop] = useState<Crop | null>(null);
 
-  const filteredCrops = filter === 'ALL' ? crops : crops.filter(c => c.monitoring.riskLevel === filter);
+    // New Question Handler for Monitoring
+    const handleExpertFromMonitoring = (data: any) => {
+        const { askExpertQuestion } = useStore.getState(); // Direct access for inline handler
+        askExpertQuestion({
+            id: Math.random().toString(),
+            farmerName: 'John Doe',
+            crop: data.crop,
+            title: data.title,
+            description: data.desc,
+            status: 'OPEN',
+            date: 'Just now',
+            history: [{
+                id: Math.random().toString(),
+                sender: 'Farmer',
+                content: data.desc,
+                timestamp: 'Just now',
+                type: 'text',
+                isRead: true
+            }]
+        });
+        setExpertCrop(null);
+        alert("Question sent to expert!");
+    };
 
-  return (
-    <div className="space-y-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <h2 className="text-xl font-bold text-gray-800">Live Crop Monitoring</h2>
-            <div className="flex flex-wrap gap-2 w-full md:w-auto overflow-x-auto no-scrollbar pb-1">
-                <FilterPill label="Total Monitored" active={filter === 'ALL'} onClick={() => setFilter('ALL')} color="gray" />
-                <FilterPill label="High Risk" count={crops.filter(c => c.monitoring.riskLevel === RiskLevel.HIGH).length} active={filter === RiskLevel.HIGH} onClick={() => setFilter(RiskLevel.HIGH)} color="red" />
-                <FilterPill label="Moderate Risk" count={crops.filter(c => c.monitoring.riskLevel === RiskLevel.MODERATE).length} active={filter === RiskLevel.MODERATE} onClick={() => setFilter(RiskLevel.MODERATE)} color="yellow" />
-                <FilterPill label="Low Risk" active={filter === RiskLevel.LOW} onClick={() => setFilter(RiskLevel.LOW)} color="green" />
+    const filteredCrops = filter === 'ALL' ? crops : crops.filter(c => c.monitoring.riskLevel === filter);
+
+    return (
+        <div className="space-y-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <h2 className="text-xl font-bold text-gray-800">Live Crop Monitoring</h2>
+                <div className="flex flex-wrap gap-2 w-full md:w-auto overflow-x-auto no-scrollbar pb-1">
+                    <FilterPill label="Total Monitored" active={filter === 'ALL'} onClick={() => setFilter('ALL')} color="gray" />
+                    <FilterPill label="High Risk" count={crops.filter(c => c.monitoring.riskLevel === RiskLevel.HIGH).length} active={filter === RiskLevel.HIGH} onClick={() => setFilter(RiskLevel.HIGH)} color="red" />
+                    <FilterPill label="Moderate Risk" count={crops.filter(c => c.monitoring.riskLevel === RiskLevel.MODERATE).length} active={filter === RiskLevel.MODERATE} onClick={() => setFilter(RiskLevel.MODERATE)} color="yellow" />
+                    <FilterPill label="Low Risk" active={filter === RiskLevel.LOW} onClick={() => setFilter(RiskLevel.LOW)} color="green" />
+                </div>
             </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCrops.map((crop) => (
-                <CropCard 
-                    key={crop.id} 
-                    crop={crop} 
-                    onService={() => setServiceCrop(crop)}
-                    onShift={() => setShiftCrop(crop)}
-                    onExpert={() => setExpertCrop(crop)}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredCrops.map((crop) => (
+                    <CropCard
+                        key={crop.id}
+                        crop={crop}
+                        onService={() => setServiceCrop(crop)}
+                        onShift={() => setShiftCrop(crop)}
+                        onExpert={() => setExpertCrop(crop)}
+                    />
+                ))}
+            </div>
+
+            {/* Maintenance Modal */}
+            {serviceCrop && (
+                <MaintenanceRequestModal
+                    isOpen={!!serviceCrop}
+                    onClose={() => setServiceCrop(null)}
+                    crop={serviceCrop}
                 />
-            ))}
+            )}
+
+            {/* Shift Unit Modal */}
+            {shiftCrop && (
+                <ShiftUnitModal
+                    isOpen={!!shiftCrop}
+                    onClose={() => setShiftCrop(null)}
+                    crop={shiftCrop}
+                />
+            )}
+
+            {/* Expert Modal (Reused) */}
+            {expertCrop && (
+                <AskExpertModal
+                    isOpen={!!expertCrop}
+                    onClose={() => setExpertCrop(null)}
+                    onSubmit={handleExpertFromMonitoring}
+                    initialContext={{
+                        title: `Risk Alert: ${expertCrop.name} (${expertCrop.monitoring.riskLevel} Risk)`,
+                        desc: `Monitoring data: Temp ${expertCrop.monitoring.temperature}°C, Humidity ${expertCrop.monitoring.humidity}%. AI Insight: "${expertCrop.monitoring.explanation}". Requesting advice on mitigation.`,
+                        crop: expertCrop.name
+                    }}
+                />
+            )}
         </div>
-
-        {/* Maintenance Modal */}
-        {serviceCrop && (
-            <MaintenanceRequestModal 
-                isOpen={!!serviceCrop} 
-                onClose={() => setServiceCrop(null)} 
-                crop={serviceCrop} 
-            />
-        )}
-
-        {/* Shift Unit Modal */}
-        {shiftCrop && (
-            <ShiftUnitModal 
-                isOpen={!!shiftCrop} 
-                onClose={() => setShiftCrop(null)} 
-                crop={shiftCrop} 
-            />
-        )}
-
-        {/* Expert Modal (Reused) */}
-        {expertCrop && (
-            <AskExpertModal 
-                isOpen={!!expertCrop} 
-                onClose={() => setExpertCrop(null)} 
-                onSubmit={handleExpertFromMonitoring}
-                initialContext={{
-                    title: `Risk Alert: ${expertCrop.name} (${expertCrop.monitoring.riskLevel} Risk)`,
-                    desc: `Monitoring data: Temp ${expertCrop.monitoring.temperature}°C, Humidity ${expertCrop.monitoring.humidity}%. AI Insight: "${expertCrop.monitoring.explanation}". Requesting advice on mitigation.`,
-                    crop: expertCrop.name
-                }}
-            />
-        )}
-    </div>
-  );
+    );
 };
 
 // ... existing modals (MaintenanceRequestModal, ShiftUnitModal) ...
@@ -322,7 +322,7 @@ const MaintenanceRequestModal: React.FC<{ isOpen: boolean, onClose: () => void, 
     const [time, setTime] = useState('');
 
     const handleSubmit = () => {
-        if(!desc) return;
+        if (!desc) return;
         requestMaintenance(crop.storageUnitId, desc, priority, time);
         onClose();
         alert("Maintenance Requested Successfully!");
@@ -359,9 +359,9 @@ const MaintenanceRequestModal: React.FC<{ isOpen: boolean, onClose: () => void, 
 
 const ShiftUnitModal: React.FC<{ isOpen: boolean, onClose: () => void, crop: Crop }> = ({ isOpen, onClose, crop }) => {
     const { createStorageRequest } = useStore();
-    const [form, setForm] = useState({ 
-        qty: crop.quantity.toString(), 
-        duration: '7', 
+    const [form, setForm] = useState({
+        qty: crop.quantity.toString(),
+        duration: '7',
         location: crop.location.split(',')[0].trim(),
         startDate: new Date().toISOString().split('T')[0]
     });
@@ -371,11 +371,11 @@ const ShiftUnitModal: React.FC<{ isOpen: boolean, onClose: () => void, crop: Cro
 
     const handleNumChange = (field: string, value: string) => {
         if (value && Number(value) < 0) {
-            setForm(prev => ({...prev, [field]: ''}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setForm(prev => ({ ...prev, [field]: '' }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setForm(prev => ({...prev, [field]: value}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setForm(prev => ({ ...prev, [field]: value }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
@@ -410,7 +410,7 @@ const ShiftUnitModal: React.FC<{ isOpen: boolean, onClose: () => void, crop: Cro
                     <Input label="Quantity (kg)" type="number" min="0" value={form.qty} onChange={e => handleNumChange('qty', e.target.value)} error={errors.qty} />
                     <Input label="Duration (Days)" type="number" min="0" value={form.duration} onChange={e => handleNumChange('duration', e.target.value)} error={errors.duration} />
                 </div>
-                <Input label="New Location (District)" value={form.location} onChange={e => setForm({...form, location: e.target.value})} />
+                <Input label="New Location (District)" value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} />
                 <Button className="w-full" onClick={handleSubmit} disabled={!!errors.qty || !!errors.duration || !form.qty || !form.duration}>Confirm Shift Request</Button>
             </div>
         </Modal>
@@ -421,7 +421,7 @@ const ShiftUnitModal: React.FC<{ isOpen: boolean, onClose: () => void, crop: Cro
 const CropCard: React.FC<{ crop: Crop, onService?: () => void, onShift?: () => void, onExpert?: () => void }> = ({ crop, onService, onShift, onExpert }) => {
     const data = Array.from({ length: 15 }, (_, i) => ({ time: i, temp: crop.monitoring.temperature + (Math.random() - 0.5) * 2, hum: crop.monitoring.humidity + (Math.random() - 0.5) * 5 }));
     const [loadingAction, setLoadingAction] = useState<string | null>(null);
-    
+
     const riskConfig = {
         [RiskLevel.LOW]: { bg: 'bg-green-50', border: 'border-green-200', text: 'text-green-900', subtext: 'text-green-700', iconColor: 'text-green-600', bar: 'bg-green-500', label: 'Low Risk' },
         [RiskLevel.MODERATE]: { bg: 'bg-yellow-50', border: 'border-yellow-200', text: 'text-yellow-900', subtext: 'text-yellow-800', iconColor: 'text-yellow-600', bar: 'bg-yellow-500', label: 'Moderate Risk' },
@@ -452,12 +452,12 @@ const CropCard: React.FC<{ crop: Crop, onService?: () => void, onShift?: () => v
             </div>
             <div className="p-5 space-y-6 flex-1">
                 <div className="grid grid-cols-2 gap-4 bg-gray-50 p-3 rounded-xl">
-                    <div className="space-y-1 text-center"><div className="flex items-center justify-center text-gray-500 text-xs gap-1"><Thermometer size={14}/> Temp</div><div className="text-2xl font-bold text-gray-900">{crop.monitoring.temperature}°C</div></div>
-                    <div className="space-y-1 text-center border-l border-gray-200"><div className="flex items-center justify-center text-gray-500 text-xs gap-1"><Droplets size={14}/> Humidity</div><div className="text-2xl font-bold text-gray-900">{crop.monitoring.humidity}%</div></div>
+                    <div className="space-y-1 text-center"><div className="flex items-center justify-center text-gray-500 text-xs gap-1"><Thermometer size={14} /> Temp</div><div className="text-2xl font-bold text-gray-900">{crop.monitoring.temperature}°C</div></div>
+                    <div className="space-y-1 text-center border-l border-gray-200"><div className="flex items-center justify-center text-gray-500 text-xs gap-1"><Droplets size={14} /> Humidity</div><div className="text-2xl font-bold text-gray-900">{crop.monitoring.humidity}%</div></div>
                 </div>
-                
-                <div className="h-24 w-full"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data}><defs><linearGradient id="colorTemp" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#E15554" stopOpacity={0.1}/><stop offset="95%" stopColor="#E15554" stopOpacity={0}/></linearGradient></defs><Area type="monotone" dataKey="temp" stroke="#E15554" strokeWidth={2} fill="url(#colorTemp)" /><Line type="monotone" dataKey="hum" stroke="#2F9D3C" strokeWidth={2} dot={false} /></AreaChart></ResponsiveContainer></div>
-                
+
+                <div className="h-24 w-full"><ResponsiveContainer width="100%" height="100%"><AreaChart data={data}><defs><linearGradient id="colorTemp" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#E15554" stopOpacity={0.1} /><stop offset="95%" stopColor="#E15554" stopOpacity={0} /></linearGradient></defs><Area type="monotone" dataKey="temp" stroke="#E15554" strokeWidth={2} fill="url(#colorTemp)" /><Line type="monotone" dataKey="hum" stroke="#2F9D3C" strokeWidth={2} dot={false} /></AreaChart></ResponsiveContainer></div>
+
                 <div className={`p-4 rounded-xl border ${config.bg} ${config.border} space-y-3`}>
                     <div className="flex justify-between items-center">
                         <h4 className={`text-xs font-bold uppercase flex items-center gap-1.5 ${config.text}`}><Brain size={14} className={config.iconColor} /> AI Analysis</h4>
@@ -521,21 +521,21 @@ const RequestUnitsView = () => {
 
     const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
-        setForm({...form, startDate: val});
+        setForm({ ...form, startDate: val });
         const selectedDate = new Date(val);
         const today = new Date();
-        today.setHours(0,0,0,0);
-        if(selectedDate < today) setDateError("Start date cannot be in the past");
+        today.setHours(0, 0, 0, 0);
+        if (selectedDate < today) setDateError("Start date cannot be in the past");
         else setDateError("");
     };
 
     const handleNumChange = (field: string, value: string) => {
         if (value && Number(value) < 0) {
-            setForm(prev => ({...prev, [field]: ''}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setForm(prev => ({ ...prev, [field]: '' }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setForm(prev => ({...prev, [field]: value}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setForm(prev => ({ ...prev, [field]: value }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
@@ -558,10 +558,10 @@ const RequestUnitsView = () => {
             ))}
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Request Storage Unit">
                 <div className="space-y-4">
-                    <div className="bg-blue-50 p-4 rounded-xl flex items-center gap-3 mb-4"><Calculator className="text-blue-600"/><div><p className="text-xs text-blue-600 font-bold uppercase">Estimated Cost</p><p className="text-lg font-bold text-blue-900">₹{selectedUnit ? selectedUnit.price * (Number(form.duration) || 1) : 0}</p></div></div>
-                    <div className="grid grid-cols-2 gap-4"><Input label="Crop Name" placeholder="e.g. Tomato" value={form.crop} onChange={e => setForm({...form, crop: e.target.value})} /><Input label="Quantity (kg)" type="number" min="0" value={form.qty} onChange={e => handleNumChange('qty', e.target.value)} error={errors.qty} /></div>
+                    <div className="bg-blue-50 p-4 rounded-xl flex items-center gap-3 mb-4"><Calculator className="text-blue-600" /><div><p className="text-xs text-blue-600 font-bold uppercase">Estimated Cost</p><p className="text-lg font-bold text-blue-900">₹{selectedUnit ? selectedUnit.price * (Number(form.duration) || 1) : 0}</p></div></div>
+                    <div className="grid grid-cols-2 gap-4"><Input label="Crop Name" placeholder="e.g. Tomato" value={form.crop} onChange={e => setForm({ ...form, crop: e.target.value })} /><Input label="Quantity (kg)" type="number" min="0" value={form.qty} onChange={e => handleNumChange('qty', e.target.value)} error={errors.qty} /></div>
                     <div className="grid grid-cols-2 gap-4"><Input label="Duration (Days)" type="number" min="0" value={form.duration} onChange={e => handleNumChange('duration', e.target.value)} error={errors.duration} /><div className="w-full"><Input label="Start Date" type="date" value={form.startDate} onChange={handleDateChange} className={dateError ? 'border-red-500 focus:ring-red-200' : ''} />{dateError && <p className="text-red-500 text-xs mt-1">{dateError}</p>}</div></div>
-                    <div className="w-full"><label className="block text-sm font-semibold text-gray-700 mb-1.5">Delivery Location (Kerala District)</label><div className="relative"><select className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus:ring-primary focus-visible:ring-offset-2" value={form.location} onChange={e => setForm({...form, location: e.target.value})}><option value="" disabled>Select a District</option>{KERALA_DISTRICTS.map(district => (<option key={district} value={district}>{district}</option>))}</select></div></div>
+                    <div className="w-full"><label className="block text-sm font-semibold text-gray-700 mb-1.5">Delivery Location (Kerala District)</label><div className="relative"><select className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus:ring-primary focus-visible:ring-offset-2" value={form.location} onChange={e => setForm({ ...form, location: e.target.value })}><option value="" disabled>Select a District</option>{KERALA_DISTRICTS.map(district => (<option key={district} value={district}>{district}</option>))}</select></div></div>
                     <Button className="w-full" onClick={handleSubmit} disabled={!!dateError || !!errors.qty || !!errors.duration || !form.startDate || !form.location || !form.crop || !form.qty || !form.duration}>Confirm Request</Button>
                 </div>
             </Modal>
@@ -583,7 +583,7 @@ const PendingRequestsView = () => {
                     <Card key={req.id} className="p-6">
                         <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6"><div><h3 className="font-bold text-lg text-gray-900">{req.unitType}</h3><p className="text-sm text-gray-500">For {req.quantity}kg {req.crop} • {req.duration} days</p></div><div className="text-right"><Badge variant="warning">{req.status}</Badge></div></div>
                         <div className="relative flex justify-between mb-8"><div className="absolute top-3 left-0 w-full h-0.5 bg-gray-200 -z-10"></div>{steps.map((step, idx) => { const isCompleted = idx <= currentStepIndex; const isCurrent = idx === currentStepIndex; return (<div key={step} className="flex flex-col items-center bg-white px-1"><div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold mb-2 transition-colors ${isCompleted ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-500'}`}>{isCompleted ? <Check size={14} /> : idx + 1}</div><span className={`text-[10px] font-bold hidden sm:block ${isCurrent ? 'text-green-600' : 'text-gray-400'}`}>{step}</span></div>); })}</div>
-                        <div className="flex justify-between items-center pt-4 border-t border-gray-100"><div className="flex items-center gap-2 text-sm text-gray-600"><User size={16}/> Service: <span className="font-semibold">{req.serviceMember || 'Pending Assignment'}</span></div><div className="flex gap-2">{req.status === 'REQUESTED' && <Button size="sm" variant="danger" onClick={() => cancelRequest(req.id)}>Cancel Request</Button>}{(req.status === 'ASSIGNED' || req.status === 'DISPATCHED') && <Button size="sm" variant="outline"><MessageSquare size={16} className="mr-2"/> Chat Support</Button>}</div></div>
+                        <div className="flex justify-between items-center pt-4 border-t border-gray-100"><div className="flex items-center gap-2 text-sm text-gray-600"><User size={16} /> Service: <span className="font-semibold">{req.serviceMember || 'Pending Assignment'}</span></div><div className="flex gap-2">{req.status === 'REQUESTED' && <Button size="sm" variant="danger" onClick={() => cancelRequest(req.id)}>Cancel Request</Button>}{(req.status === 'ASSIGNED' || req.status === 'DISPATCHED') && <Button size="sm" variant="outline"><MessageSquare size={16} className="mr-2" /> Chat Support</Button>}</div></div>
                     </Card>
                 );
             })}
@@ -598,7 +598,7 @@ const ActiveUnitsView = () => {
     const [issue, setIssue] = useState('');
 
     const getRiskStyles = (level: string) => {
-        switch(level) {
+        switch (level) {
             case 'Low': return 'text-green-900 bg-green-50 border-green-100';
             case 'Moderate': return 'text-yellow-900 bg-yellow-50 border-yellow-100';
             case 'High': return 'text-red-900 bg-red-50 border-red-100';
@@ -615,11 +615,12 @@ const ActiveUnitsView = () => {
             {deployedUnits.map(unit => {
                 const riskClasses = getRiskStyles(unit.riskLevel);
                 return (
-                <Card key={unit.id} className="overflow-hidden border border-gray-200">
-                    <div className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center"><div className="flex items-center gap-3"><div className={`h-3 w-3 rounded-full ${unit.status === 'Active' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div><div><h3 className="font-bold text-lg">{unit.name}</h3><p className="text-xs text-gray-400 font-mono">{unit.unitId} • {unit.unitType}</p></div></div><div className="text-right"><p className="text-2xl font-bold">{unit.remainingDays} <span className="text-sm font-normal text-gray-400">Days Left</span></p></div></div>
-                    <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-8"><div className="lg:col-span-1 space-y-6">{unit.maintenanceTicket ? (<div className="bg-yellow-50 border border-yellow-100 p-4 rounded-xl"><h4 className="font-bold text-yellow-800 text-sm mb-1 flex items-center gap-2"><Wrench size={14}/> Maintenance Requested</h4><p className="text-xs text-yellow-700">Status: {unit.maintenanceTicket.status}</p><p className="text-xs text-yellow-600 mt-1">"{unit.maintenanceTicket.issue}"</p></div>) : (<div className="grid grid-cols-2 gap-4"><div className="bg-blue-50 p-3 rounded-xl text-center"><Thermometer className="mx-auto text-blue-500 mb-1" /><p className="text-2xl font-bold text-gray-900">{unit.temperature.current}°C</p></div><div className="bg-green-50 p-3 rounded-xl text-center"><Droplets className="mx-auto text-green-500 mb-1" /><p className="text-2xl font-bold text-gray-900">{unit.humidity.current}%</p></div></div>)}<div className={`p-4 rounded-xl border ${riskClasses}`}><div className="flex justify-between items-center mb-2"><span className="text-xs font-bold uppercase flex items-center gap-1"><AlertTriangle size={14} /> AI Risk Assessment</span><Badge variant={unit.riskLevel === 'Low' ? 'success' : unit.riskLevel === 'Moderate' ? 'warning' : 'danger'}>{unit.riskLevel} Risk</Badge></div><p className="text-sm font-bold">{unit.recommendation}</p></div><div className="flex gap-2"><Button size="sm" className="flex-1" onClick={() => extendRental(unit.id, 3)}>Extend (+3 Days)</Button><Button size="sm" variant="outline" className="flex-1" disabled={!!unit.maintenanceTicket} onClick={() => { setSelectedUnitId(unit.id); setMaintenanceModalOpen(true); }}><Wrench size={16} className="mr-2"/> Service</Button></div></div><div className="lg:col-span-2 h-64 bg-gray-50 rounded-xl p-4 border border-gray-100"><h4 className="text-sm font-bold text-gray-500 mb-4">24-Hour Telemetry</h4><ResponsiveContainer width="100%" height="100%"><LineChart data={unit.telemetryHistory}><CartesianGrid strokeDasharray="3 3" vertical={false} /><XAxis dataKey="time" axisLine={false} tickLine={false} tick={{fontSize: 10}} /><YAxis axisLine={false} tickLine={false} tick={{fontSize: 10}} /><Tooltip /><Line type="monotone" dataKey="temp" stroke="#3B82F6" strokeWidth={2} dot={false} name="Temp" /><Line type="monotone" dataKey="humidity" stroke="#10B981" strokeWidth={2} dot={false} name="Humidity" /></LineChart></ResponsiveContainer></div></div>
-                </Card>
-            )})}
+                    <Card key={unit.id} className="overflow-hidden border border-gray-200">
+                        <div className="bg-gray-900 text-white px-6 py-4 flex justify-between items-center"><div className="flex items-center gap-3"><div className={`h-3 w-3 rounded-full ${unit.status === 'Active' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div><div><h3 className="font-bold text-lg">{unit.name}</h3><p className="text-xs text-gray-400 font-mono">{unit.unitId} • {unit.unitType}</p></div></div><div className="text-right"><p className="text-2xl font-bold">{unit.remainingDays} <span className="text-sm font-normal text-gray-400">Days Left</span></p></div></div>
+                        <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-8"><div className="lg:col-span-1 space-y-6">{unit.maintenanceTicket ? (<div className="bg-yellow-50 border border-yellow-100 p-4 rounded-xl"><h4 className="font-bold text-yellow-800 text-sm mb-1 flex items-center gap-2"><Wrench size={14} /> Maintenance Requested</h4><p className="text-xs text-yellow-700">Status: {unit.maintenanceTicket.status}</p><p className="text-xs text-yellow-600 mt-1">"{unit.maintenanceTicket.issue}"</p></div>) : (<div className="grid grid-cols-2 gap-4"><div className="bg-blue-50 p-3 rounded-xl text-center"><Thermometer className="mx-auto text-blue-500 mb-1" /><p className="text-2xl font-bold text-gray-900">{unit.temperature.current}°C</p></div><div className="bg-green-50 p-3 rounded-xl text-center"><Droplets className="mx-auto text-green-500 mb-1" /><p className="text-2xl font-bold text-gray-900">{unit.humidity.current}%</p></div></div>)}<div className={`p-4 rounded-xl border ${riskClasses}`}><div className="flex justify-between items-center mb-2"><span className="text-xs font-bold uppercase flex items-center gap-1"><AlertTriangle size={14} /> AI Risk Assessment</span><Badge variant={unit.riskLevel === 'Low' ? 'success' : unit.riskLevel === 'Moderate' ? 'warning' : 'danger'}>{unit.riskLevel} Risk</Badge></div><p className="text-sm font-bold">{unit.recommendation}</p></div><div className="flex gap-2"><Button size="sm" className="flex-1" onClick={() => extendRental(unit.id, 3)}>Extend (+3 Days)</Button><Button size="sm" variant="outline" className="flex-1" disabled={!!unit.maintenanceTicket} onClick={() => { setSelectedUnitId(unit.id); setMaintenanceModalOpen(true); }}><Wrench size={16} className="mr-2" /> Service</Button></div></div><div className="lg:col-span-2 h-64 bg-gray-50 rounded-xl p-4 border border-gray-100"><h4 className="text-sm font-bold text-gray-500 mb-4">24-Hour Telemetry</h4><ResponsiveContainer width="100%" height="100%"><LineChart data={unit.telemetryHistory}><CartesianGrid strokeDasharray="3 3" vertical={false} /><XAxis dataKey="time" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} /><YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10 }} /><Tooltip /><Line type="monotone" dataKey="temp" stroke="#3B82F6" strokeWidth={2} dot={false} name="Temp" /><Line type="monotone" dataKey="humidity" stroke="#10B981" strokeWidth={2} dot={false} name="Humidity" /></LineChart></ResponsiveContainer></div></div>
+                    </Card>
+                )
+            })}
             <Modal isOpen={maintenanceModalOpen} onClose={() => setMaintenanceModalOpen(false)} title="Request Maintenance">
                 <div className="space-y-4"><p className="text-sm text-gray-600">Describe the issue with your storage unit. A service technician will be assigned shortly.</p><textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={3} placeholder="e.g. Temperature fluctuation, Door not sealing..." value={issue} onChange={(e) => setIssue(e.target.value)} /><div className="flex gap-3 mt-4"><Button variant="ghost" onClick={() => setMaintenanceModalOpen(false)} className="flex-1">Cancel</Button><Button onClick={handleMaintenanceSubmit} className="flex-1">Submit Request</Button></div></div>
             </Modal>
@@ -645,17 +646,17 @@ const RentalHistoryView: React.FC<RentalHistoryViewProps> = ({ onNavigateToPendi
 
     const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
-        setRentForm({...rentForm, startDate: val});
-        if(new Date(val) < new Date()) setDateError("Start date cannot be in the past"); else setDateError("");
+        setRentForm({ ...rentForm, startDate: val });
+        if (new Date(val) < new Date()) setDateError("Start date cannot be in the past"); else setDateError("");
     };
 
     const handleNumChange = (field: string, value: string) => {
         if (value && Number(value) < 0) {
-            setRentForm(prev => ({...prev, [field]: ''}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setRentForm(prev => ({ ...prev, [field]: '' }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setRentForm(prev => ({...prev, [field]: value}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setRentForm(prev => ({ ...prev, [field]: value }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
@@ -679,14 +680,14 @@ const RentalHistoryView: React.FC<RentalHistoryViewProps> = ({ onNavigateToPendi
             <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm min-w-[700px]">
                     <thead className="bg-gray-50 border-b border-gray-200 text-gray-500"><tr><th className="px-6 py-3">Unit Type</th><th className="px-6 py-3">Crop</th><th className="px-6 py-3">Dates</th><th className="px-6 py-3">Location</th><th className="px-6 py-3">Cost</th><th className="px-6 py-3">Status</th><th className="px-6 py-3 text-right">Action</th></tr></thead>
-                    <tbody className="divide-y divide-gray-100">{rentalHistory.map(rental => (<tr key={rental.id} className="hover:bg-gray-50/50"><td className="px-6 py-4 font-medium text-gray-900">{rental.unitType}</td><td className="px-6 py-4 text-gray-600">{rental.crop}</td><td className="px-6 py-4 text-gray-600">{rental.dates}</td><td className="px-6 py-4 text-gray-600">{rental.location}</td><td className="px-6 py-4 font-bold">₹{rental.cost}</td><td className="px-6 py-4"><Badge variant={rental.status === 'COMPLETED' ? 'success' : 'danger'}>{rental.status}</Badge></td><td className="px-6 py-4 text-right"><Button size="sm" variant="ghost" className="text-primary hover:bg-green-50 flex items-center gap-1 ml-auto" onClick={() => handleRentAgainClick(rental)}><RotateCcw size={14}/> Rent Again</Button></td></tr>))}</tbody>
+                    <tbody className="divide-y divide-gray-100">{rentalHistory.map(rental => (<tr key={rental.id} className="hover:bg-gray-50/50"><td className="px-6 py-4 font-medium text-gray-900">{rental.unitType}</td><td className="px-6 py-4 text-gray-600">{rental.crop}</td><td className="px-6 py-4 text-gray-600">{rental.dates}</td><td className="px-6 py-4 text-gray-600">{rental.location}</td><td className="px-6 py-4 font-bold">₹{rental.cost}</td><td className="px-6 py-4"><Badge variant={rental.status === 'COMPLETED' ? 'success' : 'danger'}>{rental.status}</Badge></td><td className="px-6 py-4 text-right"><Button size="sm" variant="ghost" className="text-primary hover:bg-green-50 flex items-center gap-1 ml-auto" onClick={() => handleRentAgainClick(rental)}><RotateCcw size={14} /> Rent Again</Button></td></tr>))}</tbody>
                 </table>
             </div>
             <Modal isOpen={isRentAgainModalOpen} onClose={() => setIsRentAgainModalOpen(false)} title="Rent Again Request">
                 <div className="space-y-5">
                     <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 flex justify-between items-center"><div><p className="text-xs text-gray-500 uppercase font-bold">Re-ordering for</p><p className="font-bold text-gray-900">{rentForm.crop}</p></div><Badge variant="neutral">{rentForm.unitType}</Badge></div>
-                    <div className="grid grid-cols-2 gap-4"><Input label="Quantity (kg)" type="number" min="0" value={rentForm.qty} onChange={(e) => handleNumChange('qty', e.target.value)} error={errors.qty}/><Input label="Duration (Days)" type="number" min="0" value={rentForm.duration} onChange={(e) => handleNumChange('duration', e.target.value)} error={errors.duration}/></div>
-                    <div className="grid grid-cols-1 gap-4"><div><Input label="Start Date" type="date" value={rentForm.startDate} onChange={handleDateChange} className={dateError ? 'border-red-500 focus:ring-red-200' : ''}/>{dateError && <p className="text-red-500 text-xs mt-1">{dateError}</p>}</div><div className="w-full"><label className="block text-sm font-semibold text-gray-700 mb-1.5">Delivery Location</label><div className="relative"><select className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus:ring-primary focus-visible:ring-offset-2" value={rentForm.location} onChange={e => setRentForm({...rentForm, location: e.target.value})}><option value="" disabled>Select a District</option>{KERALA_DISTRICTS.map(district => (<option key={district} value={district}>{district}</option>))}</select></div></div></div>
+                    <div className="grid grid-cols-2 gap-4"><Input label="Quantity (kg)" type="number" min="0" value={rentForm.qty} onChange={(e) => handleNumChange('qty', e.target.value)} error={errors.qty} /><Input label="Duration (Days)" type="number" min="0" value={rentForm.duration} onChange={(e) => handleNumChange('duration', e.target.value)} error={errors.duration} /></div>
+                    <div className="grid grid-cols-1 gap-4"><div><Input label="Start Date" type="date" value={rentForm.startDate} onChange={handleDateChange} className={dateError ? 'border-red-500 focus:ring-red-200' : ''} />{dateError && <p className="text-red-500 text-xs mt-1">{dateError}</p>}</div><div className="w-full"><label className="block text-sm font-semibold text-gray-700 mb-1.5">Delivery Location</label><div className="relative"><select className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus:ring-primary focus-visible:ring-offset-2" value={rentForm.location} onChange={e => setRentForm({ ...rentForm, location: e.target.value })}><option value="" disabled>Select a District</option>{KERALA_DISTRICTS.map(district => (<option key={district} value={district}>{district}</option>))}</select></div></div></div>
                     <div className="bg-blue-50 p-4 rounded-xl flex justify-between items-center border border-blue-100"><div className="flex items-center gap-2 text-blue-700"><Calculator size={20} /><span className="text-sm font-medium">Estimated Total</span></div><p className="text-xl font-bold text-blue-900">₹{calculateEstimatedCost()}</p></div>
                     <div className="flex gap-3 pt-2"><Button variant="ghost" className="flex-1" onClick={() => setIsRentAgainModalOpen(false)}>Cancel</Button><Button className="flex-1" onClick={handleRentSubmit} disabled={!!dateError || !!errors.qty || !!errors.duration || !rentForm.qty || !rentForm.duration || !rentForm.location}>Submit Request</Button></div>
                 </div>
@@ -699,7 +700,7 @@ const MarketplaceView = () => {
     const [subTab, setSubTab] = useState<'LISTINGS' | 'REQUESTS' | 'NEGOTIATIONS' | 'TRENDS'>('LISTINGS');
     return (
         <div className="space-y-6">
-             <div className="flex border-b border-gray-200 overflow-x-auto no-scrollbar">
+            <div className="flex border-b border-gray-200 overflow-x-auto no-scrollbar">
                 <button onClick={() => setSubTab('LISTINGS')} className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${subTab === 'LISTINGS' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>My Listings</button>
                 <button onClick={() => setSubTab('REQUESTS')} className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${subTab === 'REQUESTS' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>Retailer Requests</button>
                 <button onClick={() => setSubTab('NEGOTIATIONS')} className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${subTab === 'NEGOTIATIONS' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>Price Negotiations</button>
@@ -740,7 +741,7 @@ const PromoteModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: Crop;
 
     if (isSuccess) {
         return (
-            <Modal isOpen={isOpen} onClose={() => {}} title="">
+            <Modal isOpen={isOpen} onClose={() => { }} title="">
                 <div className="flex flex-col items-center justify-center p-8 text-center space-y-4">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 animate-bounce">
                         <Check size={32} strokeWidth={3} />
@@ -761,7 +762,7 @@ const PromoteModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: Crop;
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {PLANS.map(plan => (
-                        <div 
+                        <div
                             key={plan.id}
                             onClick={() => setSelectedPlan(plan.id)}
                             className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all flex flex-col items-center text-center space-y-2 hover:shadow-md ${selectedPlan === plan.id ? 'border-primary bg-green-50' : 'border-gray-100 hover:border-green-200'}`}
@@ -784,14 +785,14 @@ const PromoteModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: Crop;
                         <p className="text-xl font-bold text-gray-900">₹{PLANS.find(p => p.id === selectedPlan)?.price}</p>
                     </div>
                     <div className="text-right">
-                         <p className="text-xs text-gray-500">Secure Payment via</p>
-                         <p className="text-sm font-bold text-gray-700 flex items-center justify-end gap-1"><CreditCard size={14}/> FreshVault Pay</p>
+                        <p className="text-xs text-gray-500">Secure Payment via</p>
+                        <p className="text-sm font-bold text-gray-700 flex items-center justify-end gap-1"><CreditCard size={14} /> FreshVault Pay</p>
                     </div>
                 </div>
 
-                <Button 
-                    className="w-full h-12 text-base font-bold shadow-lg shadow-primary/20" 
-                    onClick={handlePayment} 
+                <Button
+                    className="w-full h-12 text-base font-bold shadow-lg shadow-primary/20"
+                    onClick={handlePayment}
                     isLoading={isProcessing}
                 >
                     {isProcessing ? 'Processing...' : 'Proceed to Pay'}
@@ -840,11 +841,11 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
 
     const handleNumChange = (field: string, value: string) => {
         if (value && Number(value) < 0) {
-            setFormData(prev => ({...prev, [field]: ''}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setFormData(prev => ({ ...prev, [field]: '' }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setFormData(prev => ({...prev, [field]: value}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setFormData(prev => ({ ...prev, [field]: value }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
@@ -854,7 +855,7 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
             return;
         }
         if (Number(formData.quantity) <= 0 || Number(formData.price) <= 0) {
-             return;
+            return;
         }
 
         const finalVariety = formData.isOrganic ? `Organic ${formData.variety}` : formData.variety;
@@ -880,13 +881,13 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
             <div className="space-y-4">
                 {/* Crop Details */}
                 <div className="grid grid-cols-2 gap-4">
-                    <Input label="Crop Name" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
-                    <Input label="Variety" value={formData.variety} onChange={e => setFormData({...formData, variety: e.target.value})} />
+                    <Input label="Crop Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                    <Input label="Variety" value={formData.variety} onChange={e => setFormData({ ...formData, variety: e.target.value })} />
                 </div>
-                
-                <div className="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-100 cursor-pointer" onClick={() => setFormData({...formData, isOrganic: !formData.isOrganic})}>
+
+                <div className="flex items-center gap-2 p-3 bg-green-50 rounded-lg border border-green-100 cursor-pointer" onClick={() => setFormData({ ...formData, isOrganic: !formData.isOrganic })}>
                     <div className={`w-5 h-5 rounded border flex items-center justify-center ${formData.isOrganic ? 'bg-green-500 border-green-500 text-white' : 'bg-white border-gray-300'}`}>
-                        {formData.isOrganic && <Check size={14}/>}
+                        {formData.isOrganic && <Check size={14} />}
                     </div>
                     <span className="text-sm font-medium text-green-900">Certified Organic</span>
                 </div>
@@ -900,10 +901,10 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
                 <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">Location</label>
                     <div className="grid grid-cols-2 gap-4">
-                        <select 
+                        <select
                             className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
                             value={formData.district}
-                            onChange={e => setFormData({...formData, district: e.target.value})}
+                            onChange={e => setFormData({ ...formData, district: e.target.value })}
                         >
                             <option value="">Select District</option>
                             {KERALA_DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
@@ -915,10 +916,10 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">Urgency</label>
-                        <select 
-                             className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
-                             value={formData.urgency}
-                             onChange={e => setFormData({...formData, urgency: e.target.value})}
+                        <select
+                            className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
+                            value={formData.urgency}
+                            onChange={e => setFormData({ ...formData, urgency: e.target.value })}
                         >
                             <option value="NORMAL">Normal</option>
                             <option value="HIGH">High</option>
@@ -929,17 +930,17 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">Listing Image</label>
                         <div className="flex gap-2">
-                            {SAMPLE_IMAGES.slice(0,3).map((img, i) => (
-                                <img 
-                                    key={i} 
-                                    src={img} 
+                            {SAMPLE_IMAGES.slice(0, 3).map((img, i) => (
+                                <img
+                                    key={i}
+                                    src={img}
                                     className={`w-10 h-10 rounded-lg object-cover cursor-pointer border-2 ${formData.image === img ? 'border-primary' : 'border-transparent'}`}
-                                    onClick={() => setFormData({...formData, image: img})}
+                                    onClick={() => setFormData({ ...formData, image: img })}
                                     alt="sample"
                                 />
                             ))}
                             <div className="w-10 h-10 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center text-gray-400 cursor-pointer bg-gray-50">
-                                <Plus size={16}/>
+                                <Plus size={16} />
                             </div>
                         </div>
                     </div>
@@ -947,12 +948,12 @@ const EditListingModal: React.FC<{ isOpen: boolean; onClose: () => void; crop: C
 
                 {/* Alerts (ReadOnly) */}
                 {crop.monitoring.aiRiskScore > 50 && (
-                     <div className="bg-red-50 p-3 rounded-lg border border-red-100 flex items-center gap-2">
-                         <AlertTriangle size={16} className="text-red-500"/>
-                         <span className="text-xs text-red-700 font-bold">Active AI Risk Alert: {crop.monitoring.riskLevel}</span>
-                     </div>
+                    <div className="bg-red-50 p-3 rounded-lg border border-red-100 flex items-center gap-2">
+                        <AlertTriangle size={16} className="text-red-500" />
+                        <span className="text-xs text-red-700 font-bold">Active AI Risk Alert: {crop.monitoring.riskLevel}</span>
+                    </div>
                 )}
-                
+
                 <div className="flex gap-3 pt-2">
                     <Button variant="ghost" className="flex-1" onClick={onClose}>Cancel</Button>
                     <Button className="flex-1" onClick={handleSave} disabled={!!errors.quantity || !!errors.price || !formData.quantity || !formData.price}>Save Changes</Button>
@@ -1013,7 +1014,7 @@ const MyListingsTab = () => {
     const [promoteModalCrop, setPromoteModalCrop] = useState<Crop | null>(null);
     const [editingCrop, setEditingCrop] = useState<Crop | null>(null);
     const [errors, setErrors] = useState<Record<string, string>>({});
-    
+
     const [newCrop, setNewCrop] = useState<Partial<Crop>>({
         name: '', variety: '', quantity: 0, pricePerKg: 0, location: 'Wayanad'
     });
@@ -1047,11 +1048,11 @@ const MyListingsTab = () => {
 
     const handleNumChange = (field: keyof Crop, value: string) => {
         if (value && Number(value) < 0) {
-            setNewCrop(prev => ({...prev, [field]: 0}));
-            setErrors(prev => ({...prev, [field]: 'Cannot be negative'}));
+            setNewCrop(prev => ({ ...prev, [field]: 0 }));
+            setErrors(prev => ({ ...prev, [field]: 'Cannot be negative' }));
         } else {
-            setNewCrop(prev => ({...prev, [field]: Number(value)}));
-            setErrors(prev => ({...prev, [field]: ''}));
+            setNewCrop(prev => ({ ...prev, [field]: Number(value) }));
+            setErrors(prev => ({ ...prev, [field]: '' }));
         }
     };
 
@@ -1067,7 +1068,7 @@ const MyListingsTab = () => {
             storageUnitId: 'N/A',
             quantity: Number(newCrop.quantity),
             harvestDate: new Date().toLocaleDateString(),
-            imageUrl: 'https://images.unsplash.com/photo-1595855709920-45386758dd8d?q=80&w=500&auto=format&fit=crop',
+            imageUrl: '/images/logo.jpg',
             isPromoted: false,
             pricePerKg: Number(newCrop.pricePerKg),
             visibilityScore: 50,
@@ -1096,84 +1097,85 @@ const MyListingsTab = () => {
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <h3 className="text-lg font-bold text-gray-900">Your Crop Listings</h3>
-                <Button size="sm" onClick={() => setIsModalOpen(true)}><Plus size={16} className="mr-2"/> Add Listing</Button>
+                <Button size="sm" onClick={() => setIsModalOpen(true)}><Plus size={16} className="mr-2" /> Add Listing</Button>
             </div>
             <div className="space-y-4">
                 {sortedCrops.map(crop => {
                     const isPromotedActive = crop.promoted?.active || (crop.isPromoted && !crop.promoted); // Handle legacy
                     return (
-                    <Card key={crop.id} className={`p-4 flex flex-col md:flex-row gap-4 items-center transition-all ${isPromotedActive ? 'ring-2 ring-yellow-400 ring-offset-2 bg-yellow-50/10' : ''}`}>
-                        <div className="relative shrink-0">
-                            <img src={crop.imageUrl} className="w-24 h-24 rounded-lg object-cover" alt={crop.name}/>
-                            {isPromotedActive && (
-                                <div className="absolute -top-2 -left-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
-                                    <Crown size={10} fill="currentColor"/> PROMOTED
-                                </div>
-                            )}
-                        </div>
-                        <div className="flex-1 w-full">
-                            <div className="flex justify-between items-start">
-                                <div>
-                                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                                        <h4 className="font-bold text-lg text-gray-900">{crop.name}</h4>
-                                        {crop.priority === 'URGENT' && <Badge variant="danger" className="text-[10px]">URGENT</Badge>}
+                        <Card key={crop.id} className={`p-4 flex flex-col md:flex-row gap-4 items-center transition-all ${isPromotedActive ? 'ring-2 ring-yellow-400 ring-offset-2 bg-yellow-50/10' : ''}`}>
+                            <div className="relative shrink-0">
+                                <img src={crop.imageUrl} className="w-24 h-24 rounded-lg object-cover" alt={crop.name} />
+                                {isPromotedActive && (
+                                    <div className="absolute -top-2 -left-2 bg-yellow-400 text-yellow-900 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                                        <Crown size={10} fill="currentColor" /> PROMOTED
                                     </div>
-                                    <p className="text-sm text-gray-500">{crop.variety} • {crop.quantity} kg available</p>
-                                    <p className="text-xs text-gray-400 mt-1 flex items-center gap-1"><MapPin size={10}/> {crop.location}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xl font-bold text-primary">₹{crop.pricePerKg}</p>
-                                    <div className="flex items-center gap-1 text-xs text-gray-400 justify-end"><Eye size={12}/> {crop.views} views</div>
-                                    {isPromotedActive && crop.promoted?.endDate && (
-                                        <div className="mt-1">
-                                            <PromotionCountdown endDate={crop.promoted.endDate} />
+                                )}
+                            </div>
+                            <div className="flex-1 w-full">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                                            <h4 className="font-bold text-lg text-gray-900">{crop.name}</h4>
+                                            {crop.priority === 'URGENT' && <Badge variant="danger" className="text-[10px]">URGENT</Badge>}
                                         </div>
-                                    )}
+                                        <p className="text-sm text-gray-500">{crop.variety} • {crop.quantity} kg available</p>
+                                        <p className="text-xs text-gray-400 mt-1 flex items-center gap-1"><MapPin size={10} /> {crop.location}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-xl font-bold text-primary">₹{crop.pricePerKg}</p>
+                                        <div className="flex items-center gap-1 text-xs text-gray-400 justify-end"><Eye size={12} /> {crop.views} views</div>
+                                        {isPromotedActive && crop.promoted?.endDate && (
+                                            <div className="mt-1">
+                                                <PromotionCountdown endDate={crop.promoted.endDate} />
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {crop.monitoring.aiRiskScore > 40 && (
+                                    <p className="text-xs text-red-600 mt-2 font-medium flex items-center gap-1">
+                                        <AlertCircle size={12} /> AI Recommendation: {crop.monitoring.recommendation}
+                                    </p>
+                                )}
+
+                                <div className="flex gap-2 mt-4">
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className={`flex-1 border-gray-200 ${isPromotedActive ? 'text-yellow-700 bg-yellow-50 hover:bg-yellow-100 border-yellow-200' : 'text-gray-600'}`}
+                                        onClick={() => setPromoteModalCrop(crop)}
+                                    >
+                                        {isPromotedActive ? 'Renew Promotion' : 'Promote'}
+                                    </Button>
+                                    <Button size="sm" variant="outline" className="flex-1 border-gray-200 text-gray-600" onClick={() => setEditingCrop(crop)}>Edit</Button>
+                                    <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-50" onClick={() => deleteCrop(crop.id)}><Trash2 size={16} /></Button>
                                 </div>
                             </div>
-                            
-                            {crop.monitoring.aiRiskScore > 40 && (
-                                <p className="text-xs text-red-600 mt-2 font-medium flex items-center gap-1">
-                                    <AlertCircle size={12}/> AI Recommendation: {crop.monitoring.recommendation}
-                                </p>
-                            )}
-
-                            <div className="flex gap-2 mt-4">
-                                <Button 
-                                    size="sm" 
-                                    variant="outline" 
-                                    className={`flex-1 border-gray-200 ${isPromotedActive ? 'text-yellow-700 bg-yellow-50 hover:bg-yellow-100 border-yellow-200' : 'text-gray-600'}`} 
-                                    onClick={() => setPromoteModalCrop(crop)}
-                                >
-                                    {isPromotedActive ? 'Renew Promotion' : 'Promote'}
-                                </Button>
-                                <Button size="sm" variant="outline" className="flex-1 border-gray-200 text-gray-600" onClick={() => setEditingCrop(crop)}>Edit</Button>
-                                <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-50" onClick={() => deleteCrop(crop.id)}><Trash2 size={16}/></Button>
-                            </div>
-                        </div>
-                    </Card>
-                )})}
+                        </Card>
+                    )
+                })}
             </div>
 
             {/* Add Listing Modal */}
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Add New Crop Listing">
                 <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
-                        <Input label="Crop Name" placeholder="e.g. Ginger" value={newCrop.name} onChange={e => setNewCrop({...newCrop, name: e.target.value})} />
-                        <Input label="Variety" placeholder="e.g. Wayanad Local" value={newCrop.variety} onChange={e => setNewCrop({...newCrop, variety: e.target.value})} />
+                        <Input label="Crop Name" placeholder="e.g. Ginger" value={newCrop.name} onChange={e => setNewCrop({ ...newCrop, name: e.target.value })} />
+                        <Input label="Variety" placeholder="e.g. Wayanad Local" value={newCrop.variety} onChange={e => setNewCrop({ ...newCrop, variety: e.target.value })} />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <Input label="Quantity (kg)" type="number" min="0" value={newCrop.quantity ? newCrop.quantity.toString() : ''} onChange={e => handleNumChange('quantity', e.target.value)} error={errors.quantity} />
                         <Input label="Price per kg (₹)" type="number" min="0" value={newCrop.pricePerKg ? newCrop.pricePerKg.toString() : ''} onChange={e => handleNumChange('pricePerKg', e.target.value)} error={errors.pricePerKg} />
                     </div>
-                    <Input label="Location" value={newCrop.location} onChange={e => setNewCrop({...newCrop, location: e.target.value})} />
+                    <Input label="Location" value={newCrop.location} onChange={e => setNewCrop({ ...newCrop, location: e.target.value })} />
                     <Button className="w-full" onClick={handleAddCrop} disabled={!!errors.quantity || !!errors.pricePerKg || !newCrop.quantity || !newCrop.pricePerKg}>Create Listing</Button>
                 </div>
             </Modal>
 
             {/* Promote Modal */}
             {promoteModalCrop && (
-                <PromoteModal 
+                <PromoteModal
                     isOpen={!!promoteModalCrop}
                     onClose={() => setPromoteModalCrop(null)}
                     crop={promoteModalCrop}
@@ -1183,11 +1185,11 @@ const MyListingsTab = () => {
 
             {/* Edit Crop Modal */}
             {editingCrop && (
-                <EditListingModal 
-                    isOpen={!!editingCrop} 
-                    onClose={() => setEditingCrop(null)} 
-                    crop={editingCrop} 
-                    onSave={handleSaveEdit} 
+                <EditListingModal
+                    isOpen={!!editingCrop}
+                    onClose={() => setEditingCrop(null)}
+                    crop={editingCrop}
+                    onSave={handleSaveEdit}
                 />
             )}
         </div>
@@ -1199,16 +1201,16 @@ const RetailerRequestsTab = () => {
     const { retailerRequests, rejectRetailerRequest, convertRequestToOffer } = useStore();
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             {retailerRequests.filter(r => r.status === 'Open').map(req => (
-                 <Card key={req.id} className="p-5">
+            {retailerRequests.filter(r => r.status === 'Open').map(req => (
+                <Card key={req.id} className="p-5">
                     <div className="flex justify-between items-start mb-2">
-                         <h3 className="font-bold text-gray-900">{req.cropName}</h3>
-                         <Badge variant={req.urgency === 'High' ? 'danger' : req.urgency === 'Medium' ? 'warning' : 'neutral'}>{req.urgency}</Badge>
+                        <h3 className="font-bold text-gray-900">{req.cropName}</h3>
+                        <Badge variant={req.urgency === 'High' ? 'danger' : req.urgency === 'Medium' ? 'warning' : 'neutral'}>{req.urgency}</Badge>
                     </div>
                     <p className="text-sm text-gray-600 mb-2">Requested by <span className="font-semibold text-gray-900">{req.retailerName}</span> <span className="text-xs bg-gray-100 px-1 rounded">★{req.retailerRating}</span></p>
                     <div className="flex gap-4 text-xs text-gray-500 mb-3">
-                        <span className="flex items-center gap-1"><MapPin size={12}/> {req.location}</span>
-                        <span className="flex items-center gap-1"><Clock size={12}/> Due {req.deadline}</span>
+                        <span className="flex items-center gap-1"><MapPin size={12} /> {req.location}</span>
+                        <span className="flex items-center gap-1"><Clock size={12} /> Due {req.deadline}</span>
                     </div>
                     <div className="bg-gray-50 p-3 rounded-lg text-sm text-gray-700 mb-4 border border-gray-100">
                         <div className="flex justify-between mb-1">
@@ -1220,25 +1222,25 @@ const RetailerRequestsTab = () => {
                     <div className="flex gap-2">
                         <Button variant="outline" size="sm" className="flex-1 border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300" onClick={() => rejectRetailerRequest(req.id)}>Reject</Button>
                         <Button size="sm" className="flex-[2]" onClick={() => {
-                             convertRequestToOffer(req.id, {
-                                 id: Math.random().toString(),
-                                 retailerName: req.retailerName,
-                                 retailerId: 'ret-new',
-                                 cropName: req.cropName,
-                                 cropId: 'crop-new',
-                                 date: new Date().toLocaleDateString(),
-                                 offeredPrice: req.maxPrice,
-                                 quantity: req.quantityNeeded,
-                                 retailerMessage: "Offer sent based on request.",
-                                 history: [],
-                                 status: 'Pending'
-                             });
-                             alert("Proposal sent to retailer!");
-                        }}><Send size={14} className="mr-2"/> Send Proposal</Button>
+                            convertRequestToOffer(req.id, {
+                                id: Math.random().toString(),
+                                retailerName: req.retailerName,
+                                retailerId: 'ret-new',
+                                cropName: req.cropName,
+                                cropId: 'crop-new',
+                                date: new Date().toLocaleDateString(),
+                                offeredPrice: req.maxPrice,
+                                quantity: req.quantityNeeded,
+                                retailerMessage: "Offer sent based on request.",
+                                history: [],
+                                status: 'Pending'
+                            });
+                            alert("Proposal sent to retailer!");
+                        }}><Send size={14} className="mr-2" /> Send Proposal</Button>
                     </div>
-                 </Card>
-             ))}
-             {retailerRequests.filter(r => r.status === 'Open').length === 0 && <p className="text-gray-500 text-center py-8">No open requests at the moment.</p>}
+                </Card>
+            ))}
+            {retailerRequests.filter(r => r.status === 'Open').length === 0 && <p className="text-gray-500 text-center py-8">No open requests at the moment.</p>}
         </div>
     )
 };
@@ -1250,9 +1252,9 @@ const NegotiationsTab = () => {
     const [counterPrice, setCounterPrice] = useState('');
 
     // Reactive Negotiation Object
-    const selectedNegotiation = useMemo(() => 
+    const selectedNegotiation = useMemo(() =>
         negotiations.find(n => n.id === selectedNegotiationId) || null
-    , [negotiations, selectedNegotiationId]);
+        , [negotiations, selectedNegotiationId]);
 
     const handleSendMessage = () => {
         if (!selectedNegotiation || (!messageText && !counterPrice)) return;
@@ -1331,12 +1333,12 @@ const NegotiationsTab = () => {
                         {selectedNegotiation?.status === 'Negotiating' || selectedNegotiation?.status === 'Pending' ? (
                             <>
                                 <div className="flex gap-2">
-                                    <Input placeholder="Type a message..." value={messageText} onChange={e => setMessageText(e.target.value)} className="flex-1"/>
-                                    <Input 
-                                        placeholder="₹ New Price" 
-                                        type="number" 
+                                    <Input placeholder="Type a message..." value={messageText} onChange={e => setMessageText(e.target.value)} className="flex-1" />
+                                    <Input
+                                        placeholder="₹ New Price"
+                                        type="number"
                                         min="0"
-                                        value={counterPrice} 
+                                        value={counterPrice}
                                         onChange={e => {
                                             const val = e.target.value;
                                             if (val && Number(val) < 0) {
@@ -1386,7 +1388,7 @@ const MarketTrendsTab = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-6">
                 <Card className="p-6">
-                    <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><TrendingUp size={20} className="text-primary"/> Price Trends (Last 6 Weeks)</h3>
+                    <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2"><TrendingUp size={20} className="text-primary" /> Price Trends (Last 6 Weeks)</h3>
                     <div className="h-64">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={trendData}>
@@ -1401,7 +1403,7 @@ const MarketTrendsTab = () => {
                         </ResponsiveContainer>
                     </div>
                 </Card>
-                
+
                 <Card className="p-6">
                     <h3 className="font-bold text-gray-900 mb-4">District-wise Average Price (Banana)</h3>
                     <div className="h-48">
@@ -1410,7 +1412,7 @@ const MarketTrendsTab = () => {
                                 <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                                 <XAxis type="number" fontSize={12} hide />
                                 <YAxis dataKey="name" type="category" fontSize={12} tickLine={false} axisLine={false} width={80} />
-                                <Tooltip cursor={{fill: 'transparent'}} />
+                                <Tooltip cursor={{ fill: 'transparent' }} />
                                 <Bar dataKey="price" fill="#2F9D3C" radius={[0, 4, 4, 0]} barSize={20} />
                             </BarChart>
                         </ResponsiveContainer>
@@ -1421,7 +1423,7 @@ const MarketTrendsTab = () => {
             <div className="space-y-6">
                 <Card className="p-6 bg-gradient-to-br from-blue-50 to-white border-blue-100">
                     <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-blue-100 rounded-lg text-blue-600"><Brain size={24}/></div>
+                        <div className="p-2 bg-blue-100 rounded-lg text-blue-600"><Brain size={24} /></div>
                         <h3 className="font-bold text-blue-900">AI Market Advice</h3>
                     </div>
                     <div className="space-y-4">
@@ -1463,7 +1465,7 @@ const CommunityView = () => {
     const [subTab, setSubTab] = useState<'FORUM' | 'EXPERTS' | 'BARTER'>('FORUM');
     return (
         <div className="space-y-6">
-             <div className="flex border-b border-gray-200 overflow-x-auto no-scrollbar">
+            <div className="flex border-b border-gray-200 overflow-x-auto no-scrollbar">
                 <button onClick={() => setSubTab('FORUM')} className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${subTab === 'FORUM' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>Community Forum</button>
                 <button onClick={() => setSubTab('EXPERTS')} className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${subTab === 'EXPERTS' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>Expert Advice</button>
                 <button onClick={() => setSubTab('BARTER')} className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${subTab === 'BARTER' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700'}`}>Barter System</button>
@@ -1488,8 +1490,8 @@ const ForumTab = () => {
     const filteredPosts = useMemo(() => {
         return posts.filter(post => {
             const matchesSearch = post.title.toLowerCase().includes(search.toLowerCase()) || post.content.toLowerCase().includes(search.toLowerCase());
-            const matchesFilter = activeFilter === 'All' 
-                ? true 
+            const matchesFilter = activeFilter === 'All'
+                ? true
                 : activeFilter === 'Crops'
                     ? ['Cardamom', 'Banana', 'Pepper', 'Ginger', 'Coconut', 'Arecanut', 'Paddy', 'Tapioca'].some(crop => post.tags.includes(crop))
                     : post.tags.includes(activeFilter);
@@ -1519,7 +1521,7 @@ const ForumTab = () => {
     };
 
     const handleAddComment = (postId: string) => {
-        if(!commentText.trim()) return;
+        if (!commentText.trim()) return;
         addPostComment(postId, {
             id: Math.random().toString(),
             author: 'John Doe',
@@ -1558,25 +1560,25 @@ const ForumTab = () => {
                                 </div>
                             </div>
                             {post.isOwner && (
-                                <button onClick={() => deletePost(post.id)} className="text-gray-400 hover:text-red-500 transition-colors"><Trash2 size={16}/></button>
+                                <button onClick={() => deletePost(post.id)} className="text-gray-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                             )}
                         </div>
-                        
+
                         <h4 className="font-bold text-lg mb-2 text-gray-900">{post.title}</h4>
                         <p className="text-gray-800 mb-4 leading-relaxed text-sm">{post.content}</p>
-                        
-                        {post.imageUrl && <img src={post.imageUrl} alt="Post" className="rounded-xl mb-4 max-h-64 object-cover w-full border border-gray-100"/>}
-                        
+
+                        {post.imageUrl && <img src={post.imageUrl} alt="Post" className="rounded-xl mb-4 max-h-64 object-cover w-full border border-gray-100" />}
+
                         <div className="flex gap-2 mb-4 flex-wrap">
                             {post.tags.map(tag => <span key={tag} className="text-xs bg-gray-100 text-gray-700 border border-gray-200 px-2.5 py-1 rounded-full font-medium">#{tag}</span>)}
                         </div>
-                        
+
                         <div className="flex items-center gap-6 text-gray-600 font-medium text-sm border-t border-gray-100 pt-3">
                             <button onClick={() => togglePostLike(post.id)} className={`flex items-center gap-1.5 hover:bg-gray-50 px-2 py-1 rounded transition-colors ${post.isLiked ? 'text-primary font-bold' : ''}`}>
-                                <ThumbsUp size={18} className={post.isLiked ? 'fill-current' : ''}/> {post.likes}
+                                <ThumbsUp size={18} className={post.isLiked ? 'fill-current' : ''} /> {post.likes}
                             </button>
                             <button onClick={() => setExpandedPostId(expandedPostId === post.id ? null : post.id)} className="flex items-center gap-1.5 hover:bg-gray-50 px-2 py-1 rounded transition-colors">
-                                <MessageSquare size={18}/> {post.commentsCount}
+                                <MessageSquare size={18} /> {post.commentsCount}
                             </button>
                         </div>
 
@@ -1595,8 +1597,8 @@ const ForumTab = () => {
                                             </div>
                                         ))}
                                         <div className="flex gap-2 mt-2">
-                                            <Input placeholder="Write a comment..." value={commentText} onChange={e => setCommentText(e.target.value)} className="h-10 text-sm"/>
-                                            <Button size="sm" onClick={() => handleAddComment(post.id)} disabled={!commentText.trim()}><Send size={16}/></Button>
+                                            <Input placeholder="Write a comment..." value={commentText} onChange={e => setCommentText(e.target.value)} className="h-10 text-sm" />
+                                            <Button size="sm" onClick={() => handleAddComment(post.id)} disabled={!commentText.trim()}><Send size={16} /></Button>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -1616,14 +1618,14 @@ const ForumTab = () => {
             {/* Create Post Modal */}
             <Modal isOpen={isCreateModalOpen} onClose={() => setIsCreateModalOpen(false)} title="Create New Post">
                 <div className="space-y-4">
-                    <Input label="Title" placeholder="e.g. Disease in pepper plants" value={newPost.title} onChange={e => setNewPost({...newPost, title: e.target.value})} />
+                    <Input label="Title" placeholder="e.g. Disease in pepper plants" value={newPost.title} onChange={e => setNewPost({ ...newPost, title: e.target.value })} />
                     <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-1.5">Content</label>
-                        <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={4} placeholder="Describe your issue or share your experience..." value={newPost.content} onChange={e => setNewPost({...newPost, content: e.target.value})}></textarea>
+                        <textarea className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900" rows={4} placeholder="Describe your issue or share your experience..." value={newPost.content} onChange={e => setNewPost({ ...newPost, content: e.target.value })}></textarea>
                     </div>
-                    <Input label="Tags (comma separated)" placeholder="e.g. Disease, Pepper, Urgent" value={newPost.tags} onChange={e => setNewPost({...newPost, tags: e.target.value})} />
+                    <Input label="Tags (comma separated)" placeholder="e.g. Disease, Pepper, Urgent" value={newPost.tags} onChange={e => setNewPost({ ...newPost, tags: e.target.value })} />
                     <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center text-gray-400 cursor-pointer hover:bg-gray-50">
-                        <ImageIcon size={24} className="mb-2"/>
+                        <ImageIcon size={24} className="mb-2" />
                         <span className="text-xs">Click to upload image (optional)</span>
                     </div>
                     <Button className="w-full" onClick={handleCreatePost}>Post to Community</Button>
@@ -1642,7 +1644,7 @@ const ExpertsTab = () => {
     const [selectedQuestionId, setSelectedQuestionId] = useState<string | null>(null);
     const [isAskModalOpen, setIsAskModalOpen] = useState(false);
     const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
-    
+
     // Filters
     const [filter, setFilter] = useState<'ACTIVE' | 'RESOLVED'>('ACTIVE');
     const [search, setSearch] = useState('');
@@ -1653,7 +1655,7 @@ const ExpertsTab = () => {
 
     // Derived Data
     const activeQuestion = expertQuestions.find(q => q.id === selectedQuestionId);
-    
+
     const filteredQuestions = expertQuestions.filter(q => {
         const matchesSearch = q.title.toLowerCase().includes(search.toLowerCase()) || q.crop.toLowerCase().includes(search.toLowerCase());
         const matchesStatus = filter === 'ACTIVE' ? q.status !== 'RESOLVED' : q.status === 'RESOLVED';
@@ -1710,67 +1712,67 @@ const ExpertsTab = () => {
 
     return (
         <div className="h-[calc(100vh-200px)] min-h-[500px] flex flex-col md:flex-row gap-6 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-             
-             {/* LEFT PANEL: LIST */}
-             <div className={`w-full md:w-1/3 flex flex-col border-r border-gray-100 ${selectedQuestionId ? 'hidden md:flex' : 'flex'}`}>
-                 <div className="p-4 border-b border-gray-100 bg-gray-50">
-                     <div className="flex justify-between items-center mb-4">
-                         <h3 className="font-bold text-gray-900">My Consultations</h3>
-                         <Button size="sm" onClick={() => setIsAskModalOpen(true)}><Plus size={16}/> Ask Expert</Button>
-                     </div>
-                     <div className="relative mb-3">
-                         <Search className="absolute left-3 top-2.5 text-gray-400" size={16}/>
-                         <input 
+
+            {/* LEFT PANEL: LIST */}
+            <div className={`w-full md:w-1/3 flex flex-col border-r border-gray-100 ${selectedQuestionId ? 'hidden md:flex' : 'flex'}`}>
+                <div className="p-4 border-b border-gray-100 bg-gray-50">
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="font-bold text-gray-900">My Consultations</h3>
+                        <Button size="sm" onClick={() => setIsAskModalOpen(true)}><Plus size={16} /> Ask Expert</Button>
+                    </div>
+                    <div className="relative mb-3">
+                        <Search className="absolute left-3 top-2.5 text-gray-400" size={16} />
+                        <input
                             className="w-full pl-9 pr-4 py-2 bg-white border border-gray-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                             placeholder="Search questions..."
                             value={search}
                             onChange={e => setSearch(e.target.value)}
-                         />
-                     </div>
-                     <div className="flex bg-white p-1 rounded-lg border border-gray-200">
-                         <button onClick={() => setFilter('ACTIVE')} className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${filter === 'ACTIVE' ? 'bg-primary text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}>Active</button>
-                         <button onClick={() => setFilter('RESOLVED')} className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${filter === 'RESOLVED' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}>Resolved</button>
-                     </div>
-                 </div>
+                        />
+                    </div>
+                    <div className="flex bg-white p-1 rounded-lg border border-gray-200">
+                        <button onClick={() => setFilter('ACTIVE')} className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${filter === 'ACTIVE' ? 'bg-primary text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}>Active</button>
+                        <button onClick={() => setFilter('RESOLVED')} className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${filter === 'RESOLVED' ? 'bg-gray-800 text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}>Resolved</button>
+                    </div>
+                </div>
 
-                 <div className="flex-1 overflow-y-auto">
-                     {filteredQuestions.length === 0 && (
-                         <div className="p-8 text-center text-gray-400 text-sm">No {filter.toLowerCase()} questions found.</div>
-                     )}
-                     {filteredQuestions.map(q => (
-                         <div 
-                            key={q.id} 
+                <div className="flex-1 overflow-y-auto">
+                    {filteredQuestions.length === 0 && (
+                        <div className="p-8 text-center text-gray-400 text-sm">No {filter.toLowerCase()} questions found.</div>
+                    )}
+                    {filteredQuestions.map(q => (
+                        <div
+                            key={q.id}
                             onClick={() => setSelectedQuestionId(q.id)}
                             className={`p-4 border-b border-gray-50 cursor-pointer hover:bg-blue-50/50 transition-colors ${selectedQuestionId === q.id ? 'bg-blue-50 border-l-4 border-l-primary' : ''}`}
-                         >
-                             <div className="flex justify-between items-start mb-1">
-                                 <Badge variant="neutral" className="text-[10px] px-1.5 py-0.5 bg-gray-100 text-gray-600">{q.crop}</Badge>
-                                 <span className="text-[10px] text-gray-400">{q.date}</span>
-                             </div>
-                             <h4 className={`text-sm truncate mb-1 ${q.unreadCount ? 'font-bold text-gray-900' : 'font-medium text-gray-700'}`}>{q.title}</h4>
-                             <div className="flex justify-between items-center">
-                                <p className="text-xs text-gray-500 truncate max-w-[180px]">{q.history[q.history.length-1]?.content || q.description}</p>
+                        >
+                            <div className="flex justify-between items-start mb-1">
+                                <Badge variant="neutral" className="text-[10px] px-1.5 py-0.5 bg-gray-100 text-gray-600">{q.crop}</Badge>
+                                <span className="text-[10px] text-gray-400">{q.date}</span>
+                            </div>
+                            <h4 className={`text-sm truncate mb-1 ${q.unreadCount ? 'font-bold text-gray-900' : 'font-medium text-gray-700'}`}>{q.title}</h4>
+                            <div className="flex justify-between items-center">
+                                <p className="text-xs text-gray-500 truncate max-w-[180px]">{q.history[q.history.length - 1]?.content || q.description}</p>
                                 {q.unreadCount && q.unreadCount > 0 ? (
                                     <span className="bg-red-500 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full shadow-sm">{q.unreadCount}</span>
                                 ) : null}
-                             </div>
-                         </div>
-                     ))}
-                 </div>
-             </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-             {/* RIGHT PANEL: CHAT */}
-             <div className={`w-full md:w-2/3 flex flex-col bg-white relative ${!selectedQuestionId ? 'hidden md:flex' : 'flex'}`}>
-                 {activeQuestion ? (
-                     <>
+            {/* RIGHT PANEL: CHAT */}
+            <div className={`w-full md:w-2/3 flex flex-col bg-white relative ${!selectedQuestionId ? 'hidden md:flex' : 'flex'}`}>
+                {activeQuestion ? (
+                    <>
                         {/* Header */}
                         <div className="p-3 border-b border-gray-100 flex justify-between items-center shadow-sm z-10 bg-white">
                             <div className="flex items-center gap-2">
-                                <button onClick={handleBack} className="md:hidden p-2 -ml-2 text-gray-500 hover:bg-gray-100 rounded-full"><ChevronLeft size={20}/></button>
+                                <button onClick={handleBack} className="md:hidden p-2 -ml-2 text-gray-500 hover:bg-gray-100 rounded-full"><ChevronLeft size={20} /></button>
                                 <div>
                                     <h3 className="font-bold text-gray-900 text-sm md:text-base flex items-center gap-2">
                                         {activeQuestion.title}
-                                        {activeQuestion.status === 'RESOLVED' && <CheckCircle size={16} className="text-green-500"/>}
+                                        {activeQuestion.status === 'RESOLVED' && <CheckCircle size={16} className="text-green-500" />}
                                     </h3>
                                     <p className="text-xs text-gray-500 flex items-center gap-1">
                                         {activeQuestion.status === 'IN_PROGRESS' && <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>}
@@ -1778,11 +1780,11 @@ const ExpertsTab = () => {
                                     </p>
                                 </div>
                             </div>
-                            
+
                             {/* Actions (Demo: Allow farmer to force resolve to test rating) */}
                             {activeQuestion.status !== 'RESOLVED' && (
                                 <Button size="sm" variant="ghost" className="text-xs text-green-600 hover:bg-green-50" onClick={() => resolveExpertQuestion(activeQuestion.id)}>
-                                    <Check size={14} className="mr-1"/> Mark Resolved
+                                    <Check size={14} className="mr-1" /> Mark Resolved
                                 </Button>
                             )}
                         </div>
@@ -1792,12 +1794,12 @@ const ExpertsTab = () => {
                             {activeQuestion.history.map((msg, i) => (
                                 <ChatBubble key={i} msg={msg} />
                             ))}
-                            
+
                             {activeQuestion.status === 'RESOLVED' && (
                                 <div className="mt-8 mb-4">
                                     <div className="mx-auto max-w-sm bg-white p-6 rounded-2xl shadow-sm border border-gray-200 text-center">
                                         <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600">
-                                            <CheckCircle size={24}/>
+                                            <CheckCircle size={24} />
                                         </div>
                                         <h4 className="font-bold text-gray-900 mb-1">Issue Resolved</h4>
                                         <p className="text-xs text-gray-500 mb-4">This thread is now closed.</p>
@@ -1805,7 +1807,7 @@ const ExpertsTab = () => {
                                             <Button size="sm" onClick={() => setIsRatingModalOpen(true)}>Rate Expert</Button>
                                         ) : (
                                             <div className="flex justify-center gap-1 text-yellow-400">
-                                                {[...Array(activeQuestion.rating)].map((_, i) => <Star key={i} size={16} fill="currentColor"/>)}
+                                                {[...Array(activeQuestion.rating)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
                                             </div>
                                         )}
                                     </div>
@@ -1818,51 +1820,51 @@ const ExpertsTab = () => {
                             <div className="p-3 bg-white border-t border-gray-200">
                                 <div className="flex items-center gap-2">
                                     <button onClick={handleFileUpload} className="p-2 text-gray-400 hover:bg-gray-100 rounded-full transition-colors">
-                                        <Paperclip size={20}/>
+                                        <Paperclip size={20} />
                                     </button>
-                                    <input 
+                                    <input
                                         className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900"
                                         placeholder="Type your message..."
                                         value={chatInput}
                                         onChange={e => setChatInput(e.target.value)}
                                         onKeyDown={e => e.key === 'Enter' && handleSendMessage()}
                                     />
-                                    <button 
+                                    <button
                                         onClick={() => handleSendMessage()}
                                         disabled={!chatInput.trim()}
                                         className="p-2 bg-primary text-white rounded-full disabled:opacity-50 disabled:bg-gray-300 hover:bg-primaryDark transition-colors shadow-md"
                                     >
-                                        <Send size={18} className="ml-0.5"/>
+                                        <Send size={18} className="ml-0.5" />
                                     </button>
                                 </div>
                             </div>
                         )}
-                     </>
-                 ) : (
-                     <div className="flex flex-col items-center justify-center h-full text-gray-400">
-                         <MessageSquare size={48} className="mb-4 opacity-20"/>
-                         <p className="font-medium text-sm">Select a question to view details</p>
-                     </div>
-                 )}
-             </div>
+                    </>
+                ) : (
+                    <div className="flex flex-col items-center justify-center h-full text-gray-400">
+                        <MessageSquare size={48} className="mb-4 opacity-20" />
+                        <p className="font-medium text-sm">Select a question to view details</p>
+                    </div>
+                )}
+            </div>
 
-             {/* Modals */}
-             <AskExpertModal 
-                isOpen={isAskModalOpen} 
-                onClose={() => setIsAskModalOpen(false)} 
+            {/* Modals */}
+            <AskExpertModal
+                isOpen={isAskModalOpen}
+                onClose={() => setIsAskModalOpen(false)}
                 onSubmit={handleNewQuestion}
-             />
-             
-             {isRatingModalOpen && (
-                 <RatingModal 
+            />
+
+            {isRatingModalOpen && (
+                <RatingModal
                     isOpen={isRatingModalOpen}
                     onClose={() => setIsRatingModalOpen(false)}
                     onSubmit={(rating, feedback) => {
-                        if(selectedQuestionId) rateExpertSession(selectedQuestionId, rating, feedback);
+                        if (selectedQuestionId) rateExpertSession(selectedQuestionId, rating, feedback);
                         setIsRatingModalOpen(false);
                     }}
-                 />
-             )}
+                />
+            )}
         </div>
     );
 };
@@ -1871,7 +1873,7 @@ const ExpertsTab = () => {
 const ChatBubble: React.FC<{ msg: Message }> = ({ msg }) => {
     const isFarmer = msg.sender === 'Farmer';
     const isSystem = msg.type === 'system' || msg.sender === 'System';
-    
+
     if (isSystem) {
         return (
             <div className="flex justify-center my-3">
@@ -1884,11 +1886,10 @@ const ChatBubble: React.FC<{ msg: Message }> = ({ msg }) => {
 
     return (
         <div className={`flex flex-col ${isFarmer ? 'items-end' : 'items-start'} mb-3`}>
-            <div className={`max-w-[85%] sm:max-w-[70%] rounded-2xl px-4 py-2.5 shadow-sm text-sm ${
-                isFarmer 
-                  ? 'bg-primary text-white rounded-tr-none' 
-                  : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none'
-            }`}>
+            <div className={`max-w-[85%] sm:max-w-[70%] rounded-2xl px-4 py-2.5 shadow-sm text-sm ${isFarmer
+                ? 'bg-primary text-white rounded-tr-none'
+                : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none'
+                }`}>
                 {msg.type === 'image' && msg.attachmentUrl && (
                     <img src={msg.attachmentUrl} alt="attachment" className="rounded-lg mb-2 max-h-40 object-cover border border-black/10 bg-white" />
                 )}
@@ -1916,7 +1917,7 @@ const RatingModal: React.FC<{ isOpen: boolean; onClose: () => void; onSubmit: (r
                         </button>
                     ))}
                 </div>
-                <textarea 
+                <textarea
                     className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                     rows={3}
                     placeholder="Any additional feedback..."
@@ -1934,18 +1935,18 @@ const BarterSystemTab = () => {
     const [view, setView] = useState<'BROWSE' | 'REQUESTS'>('BROWSE');
     const [search, setSearch] = useState('');
     const [districtFilter, setDistrictFilter] = useState('All Districts');
-    
+
     // Modals State
     const [selectedListing, setSelectedListing] = useState<BarterListing | null>(null);
     const [isListingModalOpen, setIsListingModalOpen] = useState(false);
     const [newListing, setNewListing] = useState({ type: '', desc: '', cost: '', district: '' });
-    
-    const [confirmAction, setConfirmAction] = useState<{type: 'ACCEPT' | 'COMPLETE', id: string} | null>(null);
-    const [ratingModal, setRatingModal] = useState<{id: string, providerName: string} | null>(null);
+
+    const [confirmAction, setConfirmAction] = useState<{ type: 'ACCEPT' | 'COMPLETE', id: string } | null>(null);
+    const [ratingModal, setRatingModal] = useState<{ id: string, providerName: string } | null>(null);
     const [rating, setRating] = useState(5);
     const [feedback, setFeedback] = useState('');
-    
-    const [disputeModal, setDisputeModal] = useState<{id: string} | null>(null);
+
+    const [disputeModal, setDisputeModal] = useState<{ id: string } | null>(null);
     const [disputeReason, setDisputeReason] = useState('');
 
     // Filter listings
@@ -1969,7 +1970,7 @@ const BarterSystemTab = () => {
     };
 
     const handleAddListing = () => {
-        if(!newListing.type || !newListing.cost) return;
+        if (!newListing.type || !newListing.cost) return;
         addBarterListing({
             id: Math.random().toString(),
             providerName: 'Soman P', // Hardcoded as current user for demo
@@ -2059,20 +2060,20 @@ const BarterSystemTab = () => {
                                 )}
                                 <div className="flex justify-between items-start mb-4 mt-2">
                                     <Badge variant="neutral" className="bg-blue-50 text-blue-700 border-blue-100 group-hover:bg-blue-100 transition-colors">{listing.serviceType}</Badge>
-                                    <span className="flex items-center gap-1 font-bold text-yellow-600 text-sm"><Coins size={14}/> {listing.creditCost}</span>
+                                    <span className="flex items-center gap-1 font-bold text-yellow-600 text-sm"><Coins size={14} /> {listing.creditCost}</span>
                                 </div>
                                 <h3 className="font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">{listing.description}</h3>
                                 <div className="mt-auto space-y-4">
                                     <div className="text-xs text-gray-500 space-y-1">
                                         <div className="flex justify-between items-center">
-                                            <p className="flex items-center gap-2"><User size={14}/> {listing.providerName}</p>
+                                            <p className="flex items-center gap-2"><User size={14} /> {listing.providerName}</p>
                                             {listing.providerRating && (
                                                 <span className="flex items-center gap-1 bg-yellow-50 text-yellow-700 px-1.5 py-0.5 rounded text-[10px] font-bold">
-                                                    <Star size={10} fill="currentColor"/> {listing.providerRating}
+                                                    <Star size={10} fill="currentColor" /> {listing.providerRating}
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="flex items-center gap-2"><MapPin size={14}/> {listing.district}</p>
+                                        <p className="flex items-center gap-2"><MapPin size={14} /> {listing.district}</p>
                                     </div>
                                     <Button className="w-full" size="sm" disabled={listing.status !== 'AVAILABLE' || listing.providerId === 'curr-user'}>
                                         {listing.providerId === 'curr-user' ? 'Manage' : listing.status === 'AVAILABLE' ? 'Request' : 'Busy'}
@@ -2086,7 +2087,7 @@ const BarterSystemTab = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Outgoing Requests */}
                     <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 flex items-center gap-2"><ArrowRight size={18} className="text-blue-500"/> Outgoing Requests</h3>
+                        <h3 className="font-bold text-gray-900 flex items-center gap-2"><ArrowRight size={18} className="text-blue-500" /> Outgoing Requests</h3>
                         {myOutgoingRequests.length === 0 && <p className="text-gray-500 text-sm">No active requests made.</p>}
                         {myOutgoingRequests.map(req => (
                             <Card key={req.id} className="p-4 border-l-4 border-l-blue-500">
@@ -2101,16 +2102,16 @@ const BarterSystemTab = () => {
                                 </div>
                                 <div className="flex justify-between items-end mt-2">
                                     <span className="text-xs text-gray-400">{req.requestDate}</span>
-                                    <span className="text-sm font-bold text-yellow-600 flex items-center gap-1"><Coins size={14}/> -{req.creditCost}</span>
+                                    <span className="text-sm font-bold text-yellow-600 flex items-center gap-1"><Coins size={14} /> -{req.creditCost}</span>
                                 </div>
-                                
+
                                 {req.status === 'COMPLETED' && !req.rating && !req.disputeReason && (
                                     <div className="mt-3 pt-3 border-t border-gray-100 flex gap-2">
-                                        <Button size="sm" className="flex-1 text-xs" onClick={() => setRatingModal({id: req.id, providerName: req.providerName})}>Rate Service</Button>
-                                        <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-50 text-xs" onClick={() => setDisputeModal({id: req.id})}>Raise Dispute</Button>
+                                        <Button size="sm" className="flex-1 text-xs" onClick={() => setRatingModal({ id: req.id, providerName: req.providerName })}>Rate Service</Button>
+                                        <Button size="sm" variant="ghost" className="text-red-500 hover:bg-red-50 text-xs" onClick={() => setDisputeModal({ id: req.id })}>Raise Dispute</Button>
                                     </div>
                                 )}
-                                
+
                                 {req.status === 'DISPUTED' && (
                                     <div className="mt-2 bg-red-50 p-2 rounded text-xs text-red-700">
                                         <strong>Dispute Open:</strong> Admin is reviewing. Credits frozen.
@@ -2122,7 +2123,7 @@ const BarterSystemTab = () => {
 
                     {/* Incoming Requests */}
                     <div className="space-y-4">
-                        <h3 className="font-bold text-gray-900 flex items-center gap-2"><CheckCircle size={18} className="text-green-500"/> Incoming Requests</h3>
+                        <h3 className="font-bold text-gray-900 flex items-center gap-2"><CheckCircle size={18} className="text-green-500" /> Incoming Requests</h3>
                         {myIncomingRequests.length === 0 && <p className="text-gray-500 text-sm">No incoming requests.</p>}
                         {myIncomingRequests.map(req => (
                             <Card key={req.id} className="p-4 border-l-4 border-l-green-500">
@@ -2134,19 +2135,19 @@ const BarterSystemTab = () => {
                                     <Badge variant={req.status === 'COMPLETED' ? 'success' : req.status === 'ACCEPTED' ? 'info' : 'warning'}>{req.status}</Badge>
                                 </div>
                                 <div className="flex justify-between items-center mt-4">
-                                    <span className="text-sm font-bold text-green-600 flex items-center gap-1"><Coins size={14}/> +{req.creditCost}</span>
+                                    <span className="text-sm font-bold text-green-600 flex items-center gap-1"><Coins size={14} /> +{req.creditCost}</span>
                                     <div className="flex gap-2">
                                         {req.status === 'REQUESTED' && (
-                                            <Button size="sm" onClick={() => setConfirmAction({type: 'ACCEPT', id: req.id})}>Accept</Button>
+                                            <Button size="sm" onClick={() => setConfirmAction({ type: 'ACCEPT', id: req.id })}>Accept</Button>
                                         )}
                                         {req.status === 'ACCEPTED' && (
-                                            <Button size="sm" variant="outline" className="text-green-600 border-green-200 hover:bg-green-50" onClick={() => setConfirmAction({type: 'COMPLETE', id: req.id})}>Mark Complete</Button>
+                                            <Button size="sm" variant="outline" className="text-green-600 border-green-200 hover:bg-green-50" onClick={() => setConfirmAction({ type: 'COMPLETE', id: req.id })}>Mark Complete</Button>
                                         )}
                                     </div>
                                 </div>
                                 {req.status === 'DISPUTED' && (
                                     <div className="mt-3 p-3 bg-red-50 rounded border border-red-100">
-                                        <p className="text-xs font-bold text-red-800 mb-2 flex items-center gap-1"><AlertOctagon size={12}/> Dispute Raised</p>
+                                        <p className="text-xs font-bold text-red-800 mb-2 flex items-center gap-1"><AlertOctagon size={12} /> Dispute Raised</p>
                                         <p className="text-xs text-red-600 italic mb-2">"{req.disputeReason}"</p>
                                         {/* Admin Stub */}
                                         <div className="flex gap-2">
@@ -2179,13 +2180,13 @@ const BarterSystemTab = () => {
                 <div className="space-y-4 text-center">
                     <p className="text-sm text-gray-600">How was the service provided by <strong>{ratingModal?.providerName}</strong>?</p>
                     <div className="flex justify-center gap-2 py-2">
-                        {[1,2,3,4,5].map(star => (
+                        {[1, 2, 3, 4, 5].map(star => (
                             <button key={star} onClick={() => setRating(star)} className="transition-transform hover:scale-110">
                                 <Star size={32} className={star <= rating ? "text-yellow-400 fill-current" : "text-gray-300"} />
                             </button>
                         ))}
                     </div>
-                    <textarea 
+                    <textarea
                         className="w-full p-3 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-gray-900"
                         placeholder="Leave a short feedback..."
                         value={feedback}
@@ -2204,7 +2205,7 @@ const BarterSystemTab = () => {
                     </div>
                     <div>
                         <label className="block text-sm font-bold text-gray-700 mb-1">Reason for Dispute</label>
-                        <textarea 
+                        <textarea
                             className="w-full p-3 bg-white rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-900"
                             placeholder="e.g. Service was not performed as described..."
                             value={disputeReason}
@@ -2253,13 +2254,13 @@ const BarterSystemTab = () => {
             {/* Create Listing Modal */}
             <Modal isOpen={isListingModalOpen} onClose={() => setIsListingModalOpen(false)} title="Offer a Service">
                 <div className="space-y-4">
-                    <Input label="Service Type" placeholder="e.g. Tractor Rental" value={newListing.type} onChange={e => setNewListing({...newListing, type: e.target.value})} />
-                    <Input label="Description" placeholder="Details about your service..." value={newListing.desc} onChange={e => setNewListing({...newListing, desc: e.target.value})} />
+                    <Input label="Service Type" placeholder="e.g. Tractor Rental" value={newListing.type} onChange={e => setNewListing({ ...newListing, type: e.target.value })} />
+                    <Input label="Description" placeholder="Details about your service..." value={newListing.desc} onChange={e => setNewListing({ ...newListing, desc: e.target.value })} />
                     <div className="grid grid-cols-2 gap-4">
-                        <Input label="Credit Cost" type="number" placeholder="e.g. 100" value={newListing.cost} onChange={e => setNewListing({...newListing, cost: e.target.value})} />
+                        <Input label="Credit Cost" type="number" placeholder="e.g. 100" value={newListing.cost} onChange={e => setNewListing({ ...newListing, cost: e.target.value })} />
                         <div className="w-full">
                             <label className="block text-sm font-semibold text-gray-700 mb-1.5">District</label>
-                            <select className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus:ring-primary" value={newListing.district} onChange={e => setNewListing({...newListing, district: e.target.value})}>
+                            <select className="block h-11 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:bg-white focus-visible:outline-none focus-visible:ring-2 focus:ring-primary" value={newListing.district} onChange={e => setNewListing({ ...newListing, district: e.target.value })}>
                                 <option value="" disabled>Select</option>
                                 {KERALA_DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
                             </select>

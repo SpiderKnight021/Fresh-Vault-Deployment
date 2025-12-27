@@ -1,16 +1,16 @@
 
 
 export enum UserRole {
-  FARMER = 'FARMER',
-  RETAILER = 'RETAILER',
-  SERVICE = 'SERVICE',
-  GUEST = 'GUEST'
+    FARMER = 'FARMER',
+    RETAILER = 'RETAILER',
+    SERVICE = 'SERVICE',
+    GUEST = 'GUEST'
 }
 
 export enum RiskLevel {
-  LOW = 'LOW',
-  MODERATE = 'MODERATE',
-  HIGH = 'HIGH'
+    LOW = 'LOW',
+    MODERATE = 'MODERATE',
+    HIGH = 'HIGH'
 }
 
 export interface PricePoint {
@@ -28,37 +28,38 @@ export interface Promotion {
 }
 
 export interface Crop {
-  id: string;
-  name: string;
-  variety: string;
-  location: string; // e.g., Wayanad, Kerala
-  farmerName: string;
-  farmerRating: number;
-  storageUnitId: string;
-  quantity: number; // in kg
-  harvestDate: string;
-  imageUrl: string;
-  isPromoted: boolean; // Kept for backward compatibility, sync with promoted.active
-  promoted?: Promotion; // New promotion metadata
-  pricePerKg: number;
-  visibilityScore: number; // 1-100
-  monitoring: {
-    temperature: number;
-    humidity: number;
-    aiRiskScore: number; // 0-100
-    riskLevel: RiskLevel;
-    recommendation: string;
-    // New AI Fields
-    explanation?: string; // Why is it risky?
-    confidence?: number; // 0-100%
-    spoilageHours?: number; // Estimated hours remaining
-  };
-  views?: number;
-  inquiries?: number;
-  priority?: 'URGENT' | 'NORMAL' | 'HIGH';
-  category?: 'Vegetables' | 'Spices' | 'Fruits' | 'Tubers' | 'Others'; 
-  priceHistory?: PricePoint[]; // New: For price history chart
-  qaStatus?: 'NONE' | 'REQUESTED' | 'VERIFIED'; // New: Quality Assurance
+    id: string;
+    name: string;
+    variety: string;
+    location: string; // e.g., Wayanad, Kerala
+    farmerName: string;
+    farmerRating: number;
+    storageUnitId: string;
+    quantity: number; // in kg
+    harvestDate: string;
+    imageUrl: string;
+    isPromoted: boolean; // Kept for backward compatibility, sync with promoted.active
+    promoted?: Promotion; // New promotion metadata
+    pricePerKg: number;
+    visibilityScore: number; // 1-100
+    monitoring: {
+        temperature: number;
+        humidity: number;
+        aiRiskScore: number; // 0-100
+        riskLevel: RiskLevel;
+        recommendation: string;
+        // New AI Fields
+        explanation?: string; // Why is it risky?
+        confidence?: number; // 0-100%
+        spoilageHours?: number; // Estimated hours remaining
+    };
+    views?: number;
+    inquiries?: number;
+    priority?: 'URGENT' | 'NORMAL' | 'HIGH';
+    category?: 'Vegetables' | 'Spices' | 'Fruits' | 'Tubers' | 'Others';
+    priceHistory?: PricePoint[]; // New: For price history chart
+    qaStatus?: 'NONE' | 'REQUESTED' | 'VERIFIED'; // New: Quality Assurance
+    listingImages?: string[]; // Optional array of image URLs for listings
 }
 
 export interface Message {
@@ -72,19 +73,19 @@ export interface Message {
 }
 
 export interface Offer {
-  id: string;
-  cropId: string;
-  retailerId: string;
-  farmerName: string;
-  cropName: string;
-  status: 'OFFER_SENT' | 'NEGOTIATION' | 'AGREEMENT' | 'DISPATCH' | 'DELIVERY' | 'PAYMENT' | 'COMPLETED' | 'REJECTED' | 'WITHDRAWN';
-  amount: number;
-  pricePerKg: number;
-  quantity: number;
-  date: string;
-  history: Message[];
-  notes?: string;
-  timeline?: { status: string; date: string; completed: boolean }[];
+    id: string;
+    cropId: string;
+    retailerId: string;
+    farmerName: string;
+    cropName: string;
+    status: 'OFFER_SENT' | 'NEGOTIATION' | 'AGREEMENT' | 'DISPATCH' | 'DELIVERY' | 'PAYMENT' | 'COMPLETED' | 'REJECTED' | 'WITHDRAWN';
+    amount: number;
+    pricePerKg: number;
+    quantity: number;
+    date: string;
+    history: Message[];
+    notes?: string;
+    timeline?: { status: string; date: string; completed: boolean }[];
 }
 
 export type ServiceTaskType = 'DELIVERY' | 'MAINTENANCE' | 'QA_CHECK' | 'EXPERT_ADVICE' | 'EXTENSION' | 'SUPPORT' | 'EMERGENCY';
@@ -107,65 +108,65 @@ export interface DeliveryTracking {
 }
 
 export interface ServiceTask {
-  id: string;
-  type: ServiceTaskType;
-  title: string;
-  description: string;
-  requesterName: string; // Farmer Name or System
-  location?: string;
-  priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
-  status: 'AVAILABLE' | 'ACCEPTED' | 'IN_PROGRESS' | 'COMPLETED' | 'REJECTED';
-  date: string;
-  earnings?: number; // Incentive in INR
-  unreadCount?: number; // New: For Inbox
-  metadata?: {
-      cropId?: string;
-      unitId?: string;
-      chatHistory?: Message[];
-      targetValue?: any; // For extension days etc
-      deliverySteps?: { name: string; completed: boolean; time?: string }[];
-      checklist?: { item: string; checked: boolean }[];
-      // Maintenance Specifics
-      maintenanceStage?: 'DIAGNOSTIC' | 'FIXING';
-      diagnosticNotes?: string;
-      repairNotes?: string;
-      resolutionStatus?: 'RESOLVED' | 'UNRESOLVED';
-      tracking?: DeliveryTracking;
-  }; 
+    id: string;
+    type: ServiceTaskType;
+    title: string;
+    description: string;
+    requesterName: string; // Farmer Name or System
+    location?: string;
+    priority: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+    status: 'AVAILABLE' | 'ACCEPTED' | 'IN_PROGRESS' | 'COMPLETED' | 'REJECTED';
+    date: string;
+    earnings?: number; // Incentive in INR
+    unreadCount?: number; // New: For Inbox
+    metadata?: {
+        cropId?: string;
+        unitId?: string;
+        chatHistory?: Message[];
+        targetValue?: any; // For extension days etc
+        deliverySteps?: { name: string; completed: boolean; time?: string }[];
+        checklist?: { item: string; checked: boolean }[];
+        // Maintenance Specifics
+        maintenanceStage?: 'DIAGNOSTIC' | 'FIXING';
+        diagnosticNotes?: string;
+        repairNotes?: string;
+        resolutionStatus?: 'RESOLVED' | 'UNRESOLVED';
+        tracking?: DeliveryTracking;
+    };
 }
 
 export interface Comment {
-  id: string;
-  author: string;
-  role: string;
-  content: string;
-  timestamp: string;
+    id: string;
+    author: string;
+    role: string;
+    content: string;
+    timestamp: string;
 }
 
 export interface ForumPost {
-  id: string;
-  author: string;
-  location?: string; // e.g. Wayanad
-  role: string;
-  title: string;
-  content: string;
-  imageUrl?: string;
-  likes: number;
-  isLiked?: boolean; // For current user interaction
-  isOwner?: boolean; // Can edit/delete
-  commentsCount: number;
-  commentsList: Comment[]; // Array of comments
-  timeAgo: string;
-  tags: string[];
+    id: string;
+    author: string;
+    location?: string; // e.g. Wayanad
+    role: string;
+    title: string;
+    content: string;
+    imageUrl?: string;
+    likes: number;
+    isLiked?: boolean; // For current user interaction
+    isOwner?: boolean; // Can edit/delete
+    commentsCount: number;
+    commentsList: Comment[]; // Array of comments
+    timeAgo: string;
+    tags: string[];
 }
 
 export interface Expert {
-  id: string;
-  name: string;
-  specialization: string;
-  isOnline: boolean;
-  avatar: string;
-  rating: number;
+    id: string;
+    name: string;
+    specialization: string;
+    isOnline: boolean;
+    avatar: string;
+    rating: number;
 }
 
 export interface ExpertAnswer {
